@@ -5,10 +5,7 @@
 #include "List.h"
 using namespace std;
 
-int main()
-{
-    //TestMenu();
-
+void WriteReadFile() {
     // Create and open a text file
     ofstream MyFile("filename.txt");
     MyFile << "1";
@@ -31,4 +28,43 @@ int main()
 
     cout << storage.getLength() << endl;
     storage.print();
+
+    storage.~List();
+    storage.print();
+}
+
+int main()
+{
+    TestMenu();
+    string temp;
+    while (temp != "0")
+    {
+        TestMenu();
+        cin >> temp;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        if (temp == "1") {
+            //Register Account
+        }
+        else if (temp == "2") {
+            //Log In
+        }
+        else if (temp == "3") {
+            //See post by certain user
+        }
+        else if (temp == "4") {
+            //Create new topic
+        }
+        else if (temp == "5") {
+            //Create new post
+        }
+        else if (temp == "6") {
+            //Edit / delete post
+        }
+        else if (temp == "7") {
+            //Reply to post
+        }
+        else {
+            cout << "Please enter a number in the menu!";
+        }
+    }
 }

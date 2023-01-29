@@ -13,25 +13,31 @@ List::~List() {
 		current = next;
 	}
 	firstNode = 0;
+	size = 0;
 };
 
 //Functions
 void List::print() {
-	Node* printer = new Node;
-	printer = firstNode;
-	int i = 1;
-	while (true) {
-		if (printer->next != NULL) {
-			cout << i << " " << printer->item << endl;
-			printer = printer->next;
-			i++;
-		}
-		else {
-			cout << i << " " << printer->item << endl;
-			break;
-		}
+	if (!isEmpty()) {
+		cout << "List is empty";
 	}
-	cout << "\n";
+	else{
+		Node* printer = new Node;
+		printer = firstNode;
+		int i = 1;
+		while (true) {
+			if (printer->next != NULL) {
+				cout << i << " " << printer->item << endl;
+				printer = printer->next;
+				i++;
+			}
+			else {
+				cout << i << " " << printer->item << endl;
+				break;
+			}
+		}
+		cout << "\n";
+	}
 }
 
 bool List::isEmpty() {

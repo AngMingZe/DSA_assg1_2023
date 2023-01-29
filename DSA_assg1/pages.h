@@ -10,7 +10,7 @@ void TestMenu() {
     cout << "4. Create new topic" << endl;
     cout << "5. Create new post" << endl;
     cout << "6. Edit/delete own posts" << endl;
-    cout << "6. Reply to posts" << endl;
+    cout << "7. Reply to posts" << endl;
 }
 
 void LogIn() {
