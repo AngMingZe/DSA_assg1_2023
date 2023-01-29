@@ -1,121 +1,147 @@
 #include "List.h"
+#include <iostream>
+using namespace std;
 
-// constructor
-List::List()
-{
-	firstNode = NULL;
-	size = 0;
-}
+//Constructor
+List::List() { firstNode = NULL; size = 0; };
 
-// destructor
-List::~List() { }
-
-// add an item to the back of the list (append)
-bool List::add(ItemType item)
-{
-	// create a new node to store the item
-	Node* newNode = new Node;
-	newNode->item = item;
-	newNode->next = NULL;
-
-	// add new node to the list
-	if (isEmpty())	// list is empty
-		firstNode = newNode;
-	else			// list is not empty
-	{
-		Node* current = firstNode;
-		Node* previous = firstNode;
-		while (current != NULL) 		// move to last node
-		{
-			previous = current;
-			current = current->next;
-		}
-		previous->next = newNode;		// make last node point to new node
+List::~List() {
+	Node* current = firstNode;
+	while (current != 0) {
+		Node* next = current->next;
+		delete current;
+		current = next;
 	}
-	size++;			// increase the size by 1
+	firstNode = 0;
+};
 
-	return true;  	// no size constraint
-}
-
-
-// add an item at a specified position in the list (insert)
-bool List::add(int index, ItemType item)
-{
-	bool success = (index >= 0) && (index <= size);
-	if (success)
-	{
-		// create a new node to store the item
-		Node* newNode = new Node;
-		newNode->item = item;
-		newNode->next = NULL;
-
-		// add new node to the list at the specified position
-		if (index == 0) // inserting in front
-		{
-			newNode->next = firstNode;
-			firstNode = newNode;
+//Functions
+void List::print() {
+	Node* printer = new Node;
+	printer = firstNode;
+	int i = 1;
+	while (true) {
+		if (printer->next != NULL) {
+			cout << i << " " << printer->item << endl;
+			printer = printer->next;
+			i++;
 		}
-		else
-		{
-			Node* temp = firstNode;
-			// move to the node at the position before the index
-			for (int i = 0; i < index - 1; i++)
-				temp = temp->next;
-			// make new node point to node pointed to by temp
-			newNode->next = temp->next;
-			// make temp point to the new node		
-			temp->next = newNode;
+		else {
+			cout << i << " " << printer->item << endl;
+			break;
 		}
-		size++; // increase the size by 1
 	}
-	return success;
+	cout << "\n";
 }
 
+bool List::isEmpty() {
+	if (size > 0) { return 1; }
+	else { return 0; }
+	//0 is false, non-0 is true
+}
 
-// remove an item at a specified position in the list
-void List::remove(int index)
-{
-	bool success = (index >= 0) && (index < size);
-	if (success)
-	{
-		if (index == 0) // remove front node
-			firstNode = firstNode->next;
-		else		    // remove the node at the specified position
-		{
-			Node* current = firstNode;
-			Node* previous = firstNode;
-			// move to node at the specified position
-			for (int i = 0; i < index; i++)
-			{
-				previous = current;
-				current = current->next;
+int List::getLength() {
+	return size;
+}
+
+bool List::add(ItemType itm) {
+	//create new node
+	Node* temp = new Node;
+	temp->item = itm;
+	temp->next = NULL;
+
+	//If else loop to add
+	if (size == 0) {
+		firstNode = temp;//Setting pointer of firstNode to address of temp
+		size++;
+	}
+	else {
+		Node* hihi = new Node;
+		hihi = firstNode;
+		for (int i = 0; i < size; i++) {
+			if (hihi->next == NULL) {
+				hihi->next = temp;
+				break;
 			}
-			previous->next = current->next;
-			delete current;		// de-allocate the node
-			current = NULL; 	// set current to NULL
+			else {
+				hihi = hihi->next;
+			}
 		}
-		size--;	// decrease the size by 1
+		size++;
+	}
+	return 1;
+}
+
+bool List::add(int index, ItemType itm) {
+	if (index > size) {
+		return 0;//return false as index is larger than list size, cannot be linked 
+	}
+	//create new node
+	Node* temp = new Node;
+	temp->item = itm;
+	temp->next = NULL;
+	Node* infront = new Node; //Node + 1 of new Node
+	Node* behind = new Node; //Node - 1 of new Node
+	if (size == 0) {
+		firstNode = temp;//Setting pointer of firstNode to address of temp
+		size++;
+	}
+	else if (index == 1) {
+		infront = firstNode;//Store first node somewhere
+		firstNode = temp;//Make firstnode the new item
+		temp->next = infront;//Assign pointer of new item to first node
+	}
+	else {
+		behind = firstNode;//Store first node
+		for (int i = 1; i < size; i++) {
+			if (index - 1 == i) {
+				infront = behind->next;
+				behind->next = temp;
+				temp->next = infront;
+				break;
+			}
+			else {
+				behind = behind->next; //Goes to next node
+			}
+		}
+		size++;
+	}
+
+	return 1;
+}
+
+void List::remove(int index) {
+	Node* infront = new Node; //Node + 1 of removed node
+	Node* behind = new Node; //Node - 1 of removed node
+	if (index == 1) {
+		firstNode = firstNode->next;
+	}
+	else {
+		behind = firstNode;//Store first node
+		for (int i = 2; i < size; i++) {
+			if (index == i) {
+				infront = behind->next;
+				infront = infront->next;
+				behind->next = infront;
+				break;
+			}
+			else {
+				behind = behind->next; //Goes to next node
+			}
+		}
+		size--;
 	}
 }
 
-// get (retrieve) an item at a specified position in the list
-ItemType List::get(int index)
-{
-	ItemType item = -1;	// default (not successiful)
-	bool success = index >= 0 && index < size;
-	if (success)
-	{
-		Node* temp = firstNode;
-
-		for (int i = 0; i < index; i++)  // move to specified node
-			temp = temp->next;
-
-		item = temp->item;
+ItemType List::get(int index) {
+	Node* store = firstNode; //Store first node
+	for (int i = 1; i <= size; i++) {
+		if (index == i) {
+			return store->item;
+		}
+		store = store->next;
 	}
-
-	return item;
+	return "Not found";
 }
 
-bool List::isEmpty() { return (size == 0); }
 
-int List::getLength() { return size; }

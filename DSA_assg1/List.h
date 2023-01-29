@@ -1,24 +1,25 @@
+// List.h - - Specification of List ADT (implemented using Pointers)
 #pragma once
+#include<string>
 #include<iostream>
 using namespace std;
 
-typedef int ItemType;
+typedef string ItemType;
 
 class List
 {
 private:
 	struct Node
 	{
-		ItemType item;	// data item
-		Node* next;		// pointer pointing to next node
+		ItemType item;	// item
+		Node* next;	// pointer pointing to next item
 	};
-	Node* firstNode;	// pointer pointing to first node
-	int   size;			// number of items in the list
+	Node* firstNode;	// point to the first item
+	int  size;		// number of items in the list
 
 public:
 	// constructor
 	List();
-
 	// destructor
 	~List();
 
@@ -39,4 +40,9 @@ public:
 
 	// check the size of the list
 	int getLength();
+
+	// display all the items in the list
+	void print();
 };
+
+
