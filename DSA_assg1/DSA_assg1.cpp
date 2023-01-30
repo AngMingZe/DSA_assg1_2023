@@ -3,6 +3,7 @@
 #include <string>
 #include "pages.h"
 #include "List.h"
+//#include "Account.h"
 using namespace std;
 
 void WriteReadFile() {
@@ -22,28 +23,44 @@ void WriteReadFile() {
     // Use a while loop together with the getline() function to read the file line by line
     while (getline(MyReadFile, myText)) {
         // Output the text from the file
-        storage.add(myText);
+        // storage.add('The stuff');
     }
     MyReadFile.close();
+}
 
-    cout << storage.getLength() << endl;
-    storage.print();
-
-    storage.~List();
-    storage.print();
+void LoadAccounts(List& Alist){
+    ifstream MyReadFile("filename.txt");
+    Account itm;
+    string username;
+    string password;
+    while (getline(MyReadFile, username)) {
+        itm.setUsername(username);
+        getline(MyReadFile,password);
+        itm.setpassword(password);
+        Alist.add(itm);
+    }
+    MyReadFile.close();
 }
 
 int main()
 {
-    TestMenu();
     string temp;
+    List accountList;
+
+    //Populate accounts saved in text file
+    LoadAccounts(accountList);
+    accountList.printAccounts();
+    cout << accountList.getLength() << endl;
+
     while (temp != "0")
     {
         TestMenu();
+        cout << "Enter number: ";
         cin >> temp;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         if (temp == "1") {
-            //Register Account
+            //Prompt for user info
+            //Check if there is the same username in the loaded list
         }
         else if (temp == "2") {
             //Log In
@@ -64,7 +81,7 @@ int main()
             //Reply to post
         }
         else {
-            cout << "Please enter a number in the menu!";
+            cout << "Please enter a number in the menu!\n";
         }
     }
 }

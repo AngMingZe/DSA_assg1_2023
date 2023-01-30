@@ -2,9 +2,10 @@
 #pragma once
 #include<string>
 #include<iostream>
+#include "Account.h"
 using namespace std;
 
-typedef string ItemType;
+typedef Account ItemType;
 
 class List
 {
@@ -33,7 +34,7 @@ public:
 	void remove(int index);
 
 	// get an item at a specified position of the list (retrieve)
-	ItemType get(int index);
+	string get(int index);
 
 	// check if the list is empty
 	bool isEmpty();
@@ -42,7 +43,7 @@ public:
 	int getLength();
 
 	// display all the items in the list
-	void print();
+	void printAccounts();
 };
 
 

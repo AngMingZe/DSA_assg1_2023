@@ -17,26 +17,18 @@ List::~List() {
 };
 
 //Functions
-void List::print() {
+void List::printAccounts() {
 	if (!isEmpty()) {
 		cout << "List is empty";
 	}
 	else{
-		Node* printer = new Node;
-		printer = firstNode;
-		int i = 1;
-		while (true) {
-			if (printer->next != NULL) {
-				cout << i << " " << printer->item << endl;
-				printer = printer->next;
-				i++;
-			}
-			else {
-				cout << i << " " << printer->item << endl;
-				break;
-			}
+		Node* printer = firstNode;
+		int i = 0;
+		while (i < size) {
+			cout << "username: " << printer->item.getUsername() << " Password: " << printer->item.getPassword() << endl;
+			i++;
+			printer = printer->next;
 		}
-		cout << "\n";
 	}
 }
 
@@ -62,8 +54,7 @@ bool List::add(ItemType itm) {
 		size++;
 	}
 	else {
-		Node* hihi = new Node;
-		hihi = firstNode;
+		Node* hihi = firstNode;
 		for (int i = 0; i < size; i++) {
 			if (hihi->next == NULL) {
 				hihi->next = temp;
@@ -139,11 +130,11 @@ void List::remove(int index) {
 	}
 }
 
-ItemType List::get(int index) {
+string List::get(int index) {
 	Node* store = firstNode; //Store first node
 	for (int i = 1; i <= size; i++) {
 		if (index == i) {
-			return store->item;
+			return store->item.getUsername();
 		}
 		store = store->next;
 	}

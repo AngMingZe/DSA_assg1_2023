@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Account.cpp" />
     <ClCompile Include="DSA_assg1.cpp" />
     <ClCompile Include="List.cpp" />
   </ItemGroup>
@@ -134,6 +135,7 @@
     <Text Include="filename.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Account.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="pages.h" />
   </ItemGroup>
