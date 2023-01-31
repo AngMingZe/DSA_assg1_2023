@@ -29,9 +29,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="filename.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="pages.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -41,5 +38,11 @@
     <ClInclude Include="Account.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="registration.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="accounts.txt" />
   </ItemGroup>
 </Project>

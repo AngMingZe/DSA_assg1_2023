@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "registration.h"
 #include "pages.h"
 #include "List.h"
 //#include "Account.h"
@@ -29,7 +30,7 @@ void WriteReadFile() {
 }
 
 void LoadAccounts(List& Alist){
-    ifstream MyReadFile("filename.txt");
+    ifstream MyReadFile("accounts.txt");
     Account itm;
     string username;
     string password;
@@ -59,8 +60,21 @@ int main()
         cin >> temp;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         if (temp == "1") {
-            //Prompt for user info
-            //Check if there is the same username in the loaded list
+            cout << "Set a username: ";
+            string NameInput;
+            getline(cin, NameInput);
+            cout << "Set a password: ";
+            string PWInput;
+            getline(cin, PWInput);
+
+            Account inputData;
+            inputData.setUsername(NameInput);
+            inputData.setpassword(PWInput);
+
+            accountList.add(inputData);
+            accountList.saveTXT(accountList);
+
+            cout << "Registration successful" << endl;
         }
         else if (temp == "2") {
             //Log In

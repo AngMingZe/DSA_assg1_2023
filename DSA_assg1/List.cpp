@@ -141,4 +141,19 @@ string List::get(int index) {
 	return "Not found";
 }
 
+void List::saveTXT(List accountlist) {
+	ofstream MyFile("accounts.txt");
+
+	int i = 0;
+	Node* adder = firstNode;
+	while (i < accountlist.getLength()) {
+		MyFile << adder->item.getUsername() << "\n";
+		MyFile << adder->item.getPassword() << "\n";
+		i++;
+		adder = adder->next;
+	}
+
+	MyFile.close();
+}
+
 

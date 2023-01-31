@@ -132,12 +132,13 @@
     <ClCompile Include="List.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="filename.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Account.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="pages.h" />
+    <ClInclude Include="registration.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="accounts.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
