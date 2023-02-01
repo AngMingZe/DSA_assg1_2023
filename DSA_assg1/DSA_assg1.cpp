@@ -68,6 +68,12 @@ int main()
             cout << "Set a username: ";
             string NameInput;
             getline(cin, NameInput);
+
+            bool duplicateChecker = accountList.checkDuplicates(NameInput);
+            if (duplicateChecker) {
+                cout << "Username already taken" << endl;
+                continue;
+            }
             cout << "Set a password: ";
             string PWInput;
             getline(cin, PWInput);
@@ -96,7 +102,14 @@ int main()
             inputData.setpassword(PWInput);
 
             bool checkforRecord = accountList.dataValidation(inputData);
+            if (checkforRecord) {
+                cout << "Success" << endl;
+            }
+            else {
+                cout << "Username or password incorrect" << endl;
+            }
         }
+        
         else if (temp == "3") {
             //See post by certain user
         }

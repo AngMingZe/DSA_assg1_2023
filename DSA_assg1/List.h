@@ -42,6 +42,9 @@ public:
 
 	//Data validation for logging in
 	bool dataValidation(Account data);
+
+	//Check if username already exist in data when user is registering
+	bool checkDuplicates(string username);
 };
 
 

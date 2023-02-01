@@ -99,4 +99,15 @@ bool List::dataValidation(Account data) {
 	return 0;//Return false
 }
 
+bool List::checkDuplicates(string username) {
+	Node* checker = firstNode;
+	for (int x = 0; x < size; x++) {
+		if (username == checker->item.getUsername()) {
+			return 1;//Returns true
+		}
+		checker = checker->next;
+	}
+	return 0;//Return false
+}
+
 
