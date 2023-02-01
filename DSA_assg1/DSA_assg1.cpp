@@ -49,6 +49,27 @@ void LoadAccounts(List& Alist){
 
 extern void registration(List accountList);
 
+void PrintTopics(string fileName) {
+    /*ifstream TopicFile;
+    TopicFile.open("Topics.txt", ios::out);*/
+    ifstream file(fileName);
+
+    // Check if the file was successfully opened
+    if (!file.is_open()) {
+        cout << "Failed to open file " << fileName << endl;
+        return;
+    }
+
+    // Read the contents of the file line by line
+    string line;
+    while (getline(file, line)) {
+        cout << line << endl;
+    }
+
+    // Close the file
+    file.close();
+}
+
 int main()
 {
     string temp;
@@ -109,20 +130,22 @@ int main()
                 cout << "Username or password incorrect" << endl;
             }
         }
-        
         else if (temp == "3") {
-            //See post by certain user
+            PrintTopics("Topics.txt");
         }
         else if (temp == "4") {
-            //Create new topic
+            //See post by certain user
         }
         else if (temp == "5") {
-            //Create new post
+            //Create new topic
         }
         else if (temp == "6") {
-            //Edit / delete post
+            //Create new post
         }
         else if (temp == "7") {
+            //Edit / delete post
+        }
+        else if (temp == "8") {
             //Reply to post
         }
         else {
