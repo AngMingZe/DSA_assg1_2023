@@ -38,7 +38,7 @@
     <ClInclude Include="Account.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="registration.h">
+    <ClInclude Include="registration.cpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

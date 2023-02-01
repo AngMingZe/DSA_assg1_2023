@@ -1,7 +1,11 @@
-#pragma once
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "List.h"
+#include "Account.h"
+using namespace std;
 
-/*
-string registration(List accountList) {
+void registration(List accountList) {
 	//Prompt for user info
 	//Check if there is the same username in the loaded list
     cout << "Set a username: ";
@@ -20,4 +24,3 @@ string registration(List accountList) {
 
     cout << "Registration successful" << endl;
 }
-*/

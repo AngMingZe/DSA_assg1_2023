@@ -1,7 +1,11 @@
+//Ang Ming Ze,S10203953
+//Terrence Eng, 
+//DSA P02, Group 4
+
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "registration.h"
+#include "registration.cpp"
 #include "pages.h"
 #include "List.h"
 //#include "Account.h"
@@ -43,23 +47,24 @@ void LoadAccounts(List& Alist){
     MyReadFile.close();
 }
 
+extern void registration(List accountList);
+
 int main()
 {
     string temp;
     List accountList;
 
-    //Populate accounts saved in text file
     LoadAccounts(accountList);
-    accountList.printAccounts();
-    cout << accountList.getLength() << endl;
 
     while (temp != "0")
     {
         TestMenu();
         cout << "Enter number: ";
-        cin >> temp;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, temp);
+
         if (temp == "1") {
+            //Register account
+            //TODO: data validation
             cout << "Set a username: ";
             string NameInput;
             getline(cin, NameInput);
@@ -76,8 +81,21 @@ int main()
 
             cout << "Registration successful" << endl;
         }
+
         else if (temp == "2") {
-            //Log In
+            //Log in
+            cout << "Username: ";
+            string NameInput;
+            getline(cin, NameInput);
+            cout << "Password: ";
+            string PWInput;
+            getline(cin, PWInput);
+
+            Account inputData;
+            inputData.setUsername(NameInput);
+            inputData.setpassword(PWInput);
+
+            bool checkforRecord = accountList.dataValidation(inputData);
         }
         else if (temp == "3") {
             //See post by certain user
@@ -95,7 +113,7 @@ int main()
             //Reply to post
         }
         else {
-            cout << "Please enter a number in the menu!\n";
+            cout << "Please enter a number in the menu!" << endl;
         }
     }
 }

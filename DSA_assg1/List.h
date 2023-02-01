@@ -25,16 +25,23 @@ public:
 	// destructor
 	~List();
 
+	//Adds an Account class type item to the back of the list
 	bool add(ItemType item);
-	bool add(int index, ItemType item);
-	void remove(int index);
-	string get(int index);
+
+	//Checks if list is empty
 	bool isEmpty();
+
+	//Gets the length of the List
 	int getLength();
+
+	//Prints the data store in the List
 	void printAccounts();
 
 	// save data to txt file
 	void saveTXT(List accountList);
+
+	//Data validation for logging in
+	bool dataValidation(Account data);
 };
 
 
