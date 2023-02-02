@@ -64,7 +64,6 @@ int main()
 
         if (temp == "1") {
             //Register account
-            //TODO: data validation
             cout << "Set a username: ";
             string NameInput;
             getline(cin, NameInput);
