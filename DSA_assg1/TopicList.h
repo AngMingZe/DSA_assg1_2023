@@ -6,14 +6,14 @@
 #include "Topic.h"
 using namespace std;
 
-typedef Topic ItemType;
+typedef Topic ItemType1;
 
 class TopicList
 {
 private:
 	struct Node
 	{
-		ItemType item;	// data item
+		ItemType1 item;	// data item
 		Node* next;	// pointer pointing to next item
 	};
 
@@ -29,14 +29,14 @@ public:
 	// pre : size < MAX_SIZE
 	// post: item is added to the back of the list
 	//       size of list is increased by 1
-	bool add(ItemType item);
+	bool add(ItemType1 item);
 
 	// add an item at a specified position in the list (insert)
 	// pre : 0 <= index <= size
 	// post: item is added to the specified position in the list
 	//       items after the position are shifted back by 1 position
 	//       size of list is increased by 1
-	bool add(int index, ItemType item);
+	bool add(int index, ItemType1 item);
 
 	// remove an item at a specified position in the list
 	// pre : 0 <= index < size
@@ -49,7 +49,7 @@ public:
 	// pre : 0 <= index < size
 	// post: none
 	// return the item in the specified index of the list
-	ItemType get(int index);
+	ItemType1 get(int index);
 
 	// check if the list is empty
 	// pre : none
@@ -66,10 +66,9 @@ public:
 	//------------------- Other useful functions -----------------
 
 	// display the items in the list
-	void print();
+	void PrintTopics(string fileName);
 
-	// void replace(int index, ItemType item);
-	// int search(ItemType item);
+	
 };
 
 //Topic

@@ -8,7 +8,8 @@
 #include "pages.h"
 #include "List.h"
 #include "Topic.h"
-//#include "Account.h"
+#include "TopicList.h"
+#include "Account.h"
 using namespace std;
 
 void WriteReadFile() {
@@ -47,32 +48,12 @@ void LoadAccounts(List& Alist){
     MyReadFile.close();
 }
 
-void PrintTopics(string fileName) {
-    /*ifstream TopicFile;
-    TopicFile.open("Topics.txt", ios::out);*/
-    ifstream file(fileName);
-
-    // Check if the file was successfully opened
-    if (!file.is_open()) {
-        cout << "Failed to open file " << fileName << endl;
-        return;
-    }
-
-    // Read the contents of the file line by line
-    string line;
-    while (getline(file, line)) {
-        cout << line << endl;
-    }
-
-    // Close the file
-    file.close();
-}
 
 int main()
 {
     string temp;
     List accountList;
-    Topic topicList;
+    TopicList topicList;
 
     LoadAccounts(accountList);
 
@@ -134,7 +115,7 @@ int main()
 
         //View topics 
         else if (Option == "3") {
-            //View all topics
+            topicList.PrintTopics("Topics.txt");
         }
 
         else { cout << "Please enter 1,2,3 only please" << endl; }

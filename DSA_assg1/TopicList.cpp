@@ -20,7 +20,7 @@ TopicList::~TopicList()
 }
 
 
-bool TopicList::add(ItemType item)
+bool TopicList::add(ItemType1 item)
 {
 	Node* newNode = new Node;
 	newNode->item = item;
@@ -43,7 +43,7 @@ bool TopicList::add(ItemType item)
 	return true;
 }
 
-bool TopicList::add(int index, ItemType item) //firstnode is index 0
+bool TopicList::add(int index, ItemType1 item) //firstnode is index 0
 {
 	if (index >= 0 && index < size)
 	{
@@ -105,7 +105,7 @@ void TopicList::remove(int index)
 	}
 }
 
-ItemType TopicList::get(int index)
+ItemType1 TopicList::get(int index)
 {
 	if (index >= 0 && index <= size)
 	{
@@ -135,13 +135,25 @@ int TopicList::getLength()
 	return size;
 }
 
-void TopicList::print()
-{
-	Node* temp = firstNode;
-	cout << temp->item.getMessage() << endl;
-	while (temp->next != NULL)
-	{
-		temp = temp->next;
-		cout << temp->item.getMessage() << endl;
+void TopicList::PrintTopics(string fileName) {
+	/*ifstream TopicFile;
+	TopicFile.open("Topics.txt", ios::out);*/
+	ifstream file(fileName);
+
+	// Check if the file was successfully opened
+	if (!file.is_open()) {
+		cout << "Failed to open file " << fileName << endl;
+		return;
 	}
+
+	// Read the contents of the file line by line
+	string line;
+	while (getline(file, line)) {
+		cout << line << endl;
+	}
+
+	// Close the file
+	file.close();
 }
+
+
