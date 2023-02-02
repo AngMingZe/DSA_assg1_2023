@@ -1,10 +1,4 @@
-mingze
-1234
-terrence
-5678
-
-
-gerald
-gary123
-manda
-man234
+mz
+123
+terr
+123

@@ -38,7 +38,7 @@ public:
 	void printAccounts();
 
 	// save data to txt file
-	void saveTXT(List accountList);
+	void saveTXT(Account item);
 
 	//Data validation for logging in
 	bool dataValidation(Account data);

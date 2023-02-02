@@ -21,19 +21,16 @@ void List::printAccounts() {
 	}
 	else{
 		Node* printer = firstNode;
-		int i = 1;
 		while (true) {
 			if (printer->next != NULL) {
 				cout << "username: " << printer->item.getUsername() << " Password: " << printer->item.getPassword() << endl;
 				printer = printer->next;
-				i++;
 			}
 			else {
 				cout << "username: " << printer->item.getUsername() << " Password: " << printer->item.getPassword() << endl;
 				break;
 			}
 		}
-		cout << "\n";
 	}
 }
 
@@ -74,15 +71,13 @@ bool List::add(ItemType itm) {
 	return 1;
 }
 
-void List::saveTXT(List accountlist) {
-	ofstream MyFile("accounts.txt");
+void List::saveTXT(Account att) {
+	ofstream MyFile;
+	MyFile.open("accounts.txt",std::ios_base::app);
 
-	Node* adder = firstNode;
-	for (int i = 0; i < size; i++) {
-		MyFile << adder->item.getUsername() << "\n";
-		MyFile << adder->item.getPassword() << "\n";
-		adder = adder->next;
-	}
+	MyFile << att.getUsername() << "\n";
+	MyFile << att.getPassword() << "\n";
+
 	MyFile.close();
 }
 

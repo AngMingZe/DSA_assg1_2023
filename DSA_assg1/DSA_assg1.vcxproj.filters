@@ -27,6 +27,9 @@
     <ClCompile Include="Account.cpp">
       <Filter>Source Files\Data Structure CPP</Filter>
     </ClCompile>
+    <ClCompile Include="Topic.cpp">
+      <Filter>Source Files\Data Structure CPP</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pages.h">
@@ -40,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="registration.cpp">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Topic.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

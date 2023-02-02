@@ -79,3 +79,26 @@ cout << "1. Log Out" << endl;
 12. next page
 select:
 */
+
+/*
+Hello Terrence
+1. View post by you V
+2. See all topics
+3. Log out
+
+1. Topic: astra is trash, posts by you: 3 V
+2. Topic: jett is gay, posts by you: 0
+
+Enter topic number
+
+posts by you
+1.
+2.
+3.
+
+Choose which post you want to modify:
+Press 1 to edit post, press 2 to delete post
+Enter new post: XXXX
+
+
+*/

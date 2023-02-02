@@ -130,12 +130,14 @@
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="DSA_assg1.cpp" />
     <ClCompile Include="List.cpp" />
+    <ClCompile Include="Topic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="pages.h" />
     <ClInclude Include="registration.cpp" />
+    <ClInclude Include="Topic.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="accounts.txt" />
