@@ -8,6 +8,7 @@
 #include "registration.cpp"
 #include "pages.h"
 #include "List.h"
+#include "Topic.h"
 //#include "Account.h"
 using namespace std;
 
@@ -74,6 +75,7 @@ int main()
 {
     string temp;
     List accountList;
+    Topic topicList;
 
     LoadAccounts(accountList);
 
@@ -85,7 +87,6 @@ int main()
 
         if (temp == "1") {
             //Register account
-            //TODO: data validation
             cout << "Set a username: ";
             string NameInput;
             getline(cin, NameInput);
@@ -104,9 +105,9 @@ int main()
             inputData.setpassword(PWInput);
 
             accountList.add(inputData);
-            accountList.saveTXT(accountList);
+            accountList.saveTXT(inputData);
 
-            cout << "Registration successful" << endl;
+            cout << "Registration successful"<< endl;
         }
 
         else if (temp == "2") {
@@ -130,6 +131,7 @@ int main()
                 cout << "Username or password incorrect" << endl;
             }
         }
+        
         else if (temp == "3") {
             PrintTopics("Topics.txt");
         }
@@ -137,7 +139,8 @@ int main()
             //See post by certain user
         }
         else if (temp == "5") {
-            //Create new topic
+            //ask for input
+            //data vlaidation
         }
         else if (temp == "6") {
             //Create new post

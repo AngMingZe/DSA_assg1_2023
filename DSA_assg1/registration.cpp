@@ -20,7 +20,7 @@ void registration(List accountList) {
     inputData.setpassword(PWInput);
 
     accountList.add(inputData);
-    accountList.saveTXT(accountList);
+    //accountList.saveTXT(accountList);
 
     cout << "Registration successful" << endl;
 }
