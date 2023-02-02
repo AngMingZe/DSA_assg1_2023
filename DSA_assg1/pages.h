@@ -52,14 +52,14 @@ Post
 Post
 Post
 Post
-select:
+Back
 */
 
 //Page 1 Alternative: after log in Main Page
 /*
 User: Terrence
 cout << "1. Log Out" << endl;
-2. View all topics and posts
+2. View all topics
 3. View own topics and posts
 */
 

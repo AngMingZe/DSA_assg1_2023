@@ -47,4 +47,24 @@ public:
 	bool checkDuplicates(string username);
 };
 
-
+//Topic
+//struct Node
+//{
+//	ItemType item;	// item
+//	Node* next;	// point to next topic
+//};
+//
+//Post
+//struct Node
+//{
+//	ItemType item;	// item
+//	Node* topic;	// point to topic
+//
+//};
+//
+//Replies
+//struct Node
+//{
+//	ItemType item;	// item
+//	Node* post;	// point to post
+//};

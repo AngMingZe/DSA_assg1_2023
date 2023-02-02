@@ -16,6 +16,18 @@
     <Filter Include="Source Files\Data Structure CPP">
       <UniqueIdentifier>{187ecec9-49e4-43aa-bbd1-c6bb1d9a0ec4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Topic CPP">
+      <UniqueIdentifier>{7b47da57-ccf8-4c09-abdd-5e51a9df405f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Reply CPP">
+      <UniqueIdentifier>{ef8d737a-6f73-41f3-a4ec-f5b16f0a8bc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Post CPP">
+      <UniqueIdentifier>{4f6590cf-b05c-4589-b62c-010421f09727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Text files">
+      <UniqueIdentifier>{f891efa9-ae75-4742-9db1-b8fe781b05bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DSA_assg1.cpp">
@@ -26,6 +38,24 @@
     </ClCompile>
     <ClCompile Include="Account.cpp">
       <Filter>Source Files\Data Structure CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="Post.cpp">
+      <Filter>Source Files\Post CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="Topic.cpp">
+      <Filter>Source Files\Topic CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="Reply.cpp">
+      <Filter>Source Files\Reply CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="ReplyList.cpp">
+      <Filter>Source Files\Reply CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="TopicList.cpp">
+      <Filter>Source Files\Topic CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="PostList.cpp">
+      <Filter>Source Files\Post CPP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,9 +71,31 @@
     <ClInclude Include="registration.cpp">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Topic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Post.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Reply.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TopicList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReplyList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PostList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="accounts.txt" />
-    <Text Include="Topics.txt" />
+    <Text Include="Topics.txt">
+      <Filter>Source Files\Text files</Filter>
+    </Text>
+    <Text Include="accounts.txt">
+      <Filter>Source Files\Text files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
