@@ -136,7 +136,6 @@
     <ClInclude Include="Account.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="pages.h" />
-    <ClInclude Include="registration.cpp" />
     <ClInclude Include="Topic.h" />
   </ItemGroup>
   <ItemGroup>

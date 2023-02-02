@@ -5,7 +5,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "registration.cpp"
 #include "pages.h"
 #include "List.h"
 #include "Topic.h"
@@ -48,8 +47,6 @@ void LoadAccounts(List& Alist){
     MyReadFile.close();
 }
 
-extern void registration(List accountList);
-
 void PrintTopics(string fileName) {
     /*ifstream TopicFile;
     TopicFile.open("Topics.txt", ios::out);*/
@@ -79,38 +76,15 @@ int main()
 
     LoadAccounts(accountList);
 
-    while (temp != "0")
-    {
-        TestMenu();
-        cout << "Enter number: ";
-        getline(cin, temp);
-
-        if (temp == "1") {
-            //Register account
-            cout << "Set a username: ";
-            string NameInput;
-            getline(cin, NameInput);
-
-            bool duplicateChecker = accountList.checkDuplicates(NameInput);
-            if (duplicateChecker) {
-                cout << "Username already taken" << endl;
-                continue;
-            }
-            cout << "Set a password: ";
-            string PWInput;
-            getline(cin, PWInput);
-
-            Account inputData;
-            inputData.setUsername(NameInput);
-            inputData.setpassword(PWInput);
-
-            accountList.add(inputData);
-            accountList.saveTXT(inputData);
-
-            cout << "Registration successful"<< endl;
-        }
-
-        else if (temp == "2") {
+    cout << "Welcome!" << endl;
+    cout << "Press 1 to log in, 2 to register for an account if you do not have one" << endl;
+    cout << "Press 3 if you want to look around, but you cannot post since you do not have an account" << endl;
+    while (true) {
+        cout << "Enter option: ";
+        string Option;
+        getline(cin, Option);
+        //Log in
+        if (Option == "1") {
             //Log in
             cout << "Username: ";
             string NameInput;
@@ -131,28 +105,37 @@ int main()
                 cout << "Username or password incorrect" << endl;
             }
         }
-        
-        else if (temp == "3") {
-            PrintTopics("Topics.txt");
+
+        //Register account
+        else if (Option == "2") {
+            //Register account
+            cout << "Set a username: ";
+            string NameInput;
+            getline(cin, NameInput);
+
+            bool duplicateChecker = accountList.checkDuplicates(NameInput);
+            if (duplicateChecker) {
+                cout << "Username already taken" << endl;
+                //continue;
+            }
+            cout << "Set a password: ";
+            string PWInput;
+            getline(cin, PWInput);
+
+            Account inputData;
+            inputData.setUsername(NameInput);
+            inputData.setpassword(PWInput);
+
+            accountList.add(inputData);
+            accountList.saveTXT(inputData);
+
+            cout << "Registration successful" << endl;
         }
-        else if (temp == "4") {
-            //See post by certain user
+
+        //View topics 
+        else if (Option == "3") {
+            //View all topics
         }
-        else if (temp == "5") {
-            //ask for input
-            //data vlaidation
-        }
-        else if (temp == "6") {
-            //Create new post
-        }
-        else if (temp == "7") {
-            //Edit / delete post
-        }
-        else if (temp == "8") {
-            //Reply to post
-        }
-        else {
-            cout << "Please enter a number in the menu!" << endl;
-        }
-    }
+
+        else { cout << "Please enter 1,2,3 only" << endl; }
 }
