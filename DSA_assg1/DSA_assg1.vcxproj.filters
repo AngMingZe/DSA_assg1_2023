@@ -44,5 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="accounts.txt" />
+    <Text Include="Topics.txt" />
   </ItemGroup>
 </Project>
