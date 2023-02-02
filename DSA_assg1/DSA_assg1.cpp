@@ -137,6 +137,6 @@ int main()
             //View all topics
         }
 
-        else { cout << "Please enter 1,2,3 only" << endl; }
+        else { cout << "Please enter 1,2,3 only please" << endl; }
     }
 }
