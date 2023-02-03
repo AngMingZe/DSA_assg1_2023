@@ -26,7 +26,7 @@ public:
 	~List();
 
 	//Adds an Account class type item to the back of the list
-	bool add(ItemType item);
+	bool add(Account item);
 
 	//Checks if list is empty
 	bool isEmpty();
@@ -41,7 +41,7 @@ public:
 	void saveTXT(Account item);
 
 	//Data validation for logging in
-	bool dataValidation(Account data);
+	bool dataValidation(string name, string pw);
 
 	//Check if username already exist in data when user is registering
 	bool checkDuplicates(string username);

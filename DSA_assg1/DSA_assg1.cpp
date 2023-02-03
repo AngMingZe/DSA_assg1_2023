@@ -50,19 +50,15 @@ void LoadAccounts(List& Alist){
 
 bool LogIn(List accountList,Account& user) {
     //Log in
-    cout << "Username: ";
     string NameInput;
+    string PWInput;
+    cout << "Username: ";
     getline(cin, NameInput);
     cout << "Password: ";
-    string PWInput;
     getline(cin, PWInput);
 
-    Account inputData;
-    inputData.setUsername(NameInput);
-    inputData.setpassword(PWInput);
-
-    bool checkforRecord = accountList.dataValidation(inputData);
-    if (checkforRecord) {
+    bool checkforRecord = accountList.dataValidation(NameInput,PWInput);
+    if (checkforRecord == 1) {
         //cout << "Success" << endl;
         user.setUsername(NameInput);
         user.setpassword(PWInput);
@@ -93,8 +89,27 @@ int main()
         getline(cin, Option);
         //Log in
         if (Option == "1") {
-            bool check = LogIn(accountList,user);
-            if (!check) {
+            //Log in
+            bool check;
+            string NameInput;
+            string PWInput;
+            cout << "Username: ";
+            getline(cin, NameInput);
+            cout << "Password: ";
+            getline(cin, PWInput);
+
+            bool checkforRecord = accountList.dataValidation(NameInput, PWInput);
+            if (checkforRecord == 1) {
+                user.setUsername(NameInput);
+                user.setpassword(PWInput);
+                check = true;
+            }
+            else {
+                check = false;
+            }
+            if (check) {
+                cout << "Login success!" << endl;
+                //Start of user features
                 while (true)
                 {
                     //View the menu and stuff
@@ -131,6 +146,7 @@ int main()
                         cout << "Please enter only what can be done shown in the menu!" << endl;
                     }
                 }
+                //End of user menu features
             }
             else {
                 cout << "Username or password incorrect" << endl;
@@ -147,7 +163,7 @@ int main()
             bool duplicateChecker = accountList.checkDuplicates(NameInput);
             if (duplicateChecker) {
                 cout << "Username already taken" << endl;
-                //continue;
+                continue;
             }
             cout << "Set a password: ";
             string PWInput;
@@ -172,3 +188,4 @@ int main()
         else { cout << "Please enter 1,2,3 only please" << endl; }
     }
 }
+

@@ -69,5 +69,7 @@
   <ItemGroup>
     <Text Include="accounts.txt" />
     <Text Include="Topics.txt" />
+    <Text Include="Post.txt" />
+    <Text Include="Reply.txt" />
   </ItemGroup>
 </Project>

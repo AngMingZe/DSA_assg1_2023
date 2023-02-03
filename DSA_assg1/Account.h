@@ -12,6 +12,7 @@ private:
 public:
 	Account();
 	Account(string username,string password);
+	~Account();
 
 	void setUsername(string n);
 	string getUsername();
