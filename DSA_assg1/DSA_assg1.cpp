@@ -94,7 +94,7 @@ int main()
         //Log in
         if (Option == "1") {
             bool check = LogIn(accountList,user);
-            if (check) {
+            if (!check) {
                 while (true)
                 {
                     //View the menu and stuff

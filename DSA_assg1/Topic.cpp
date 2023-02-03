@@ -5,6 +5,7 @@ Topic::Topic() {}
 Topic::Topic(string name, string m) {
 	username = name;
 	message = m;
+	PostList pList;//Initiallze empty list of post
 }
 
 void Topic::setUsername(string n) { username = n; }
