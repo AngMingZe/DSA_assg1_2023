@@ -1,24 +1,34 @@
 #pragma once
-#include<iostream>
-#include<string>
-#include "PostList.h"
+#include <string>
+
 using namespace std;
 
-
-class Topic
+struct Topic
 {
-private:
-	string username;
+	string creator;
 	string message;
-	PostList pList;
-
-public:
-	Topic();
-	Topic(string username, string message);
-
-	void setUsername(string n);
-	string getUsername();
-	void setMessage(string p);
-	string getMessage();
 };
+
+
+//#include<iostream>
+//#include<string>
+//#include "PostList.h"
+//using namespace std;
+//
+//
+//class Topic
+//{
+//private:
+//	string creator;
+//	string message;
+//
+//public:
+//	Topic();
+//	Topic(string username, string message);
+//
+//	void setUsername(string n);
+//	string getUsername();
+//	void setMessage(string p);
+//	string getMessage();
+//};
 

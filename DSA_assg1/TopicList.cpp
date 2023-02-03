@@ -20,7 +20,7 @@ TopicList::~TopicList()
 }
 
 
-bool TopicList::add(ItemType1 item)
+bool TopicList::add(TopicItem item)
 {
 	Node* newNode = new Node;
 	newNode->item = item;
@@ -43,7 +43,7 @@ bool TopicList::add(ItemType1 item)
 	return true;
 }
 
-bool TopicList::add(int index, ItemType1 item) //firstnode is index 0
+bool TopicList::add(int index, TopicItem item) //firstnode is index 0
 {
 	if (index >= 0 && index < size)
 	{
@@ -105,7 +105,7 @@ void TopicList::remove(int index)
 	}
 }
 
-ItemType1 TopicList::get(int index)
+TopicItem TopicList::get(int index)
 {
 	if (index >= 0 && index <= size)
 	{
@@ -135,29 +135,67 @@ int TopicList::getLength()
 	return size;
 }
 
-void TopicList::PrintTopics(string fileName) {
-	/*ifstream TopicFile;
-	TopicFile.open("Topics.txt", ios::out);*/
-	ifstream file(fileName);
-
-	// Check if the file was successfully opened
-	if (!file.is_open()) {
-		cout << "Failed to open file " << fileName << endl;
-		return;
+void TopicList::print()
+{
+	Node* temp = firstNode;
+	cout << temp->item.message << endl;
+	while (temp->next != NULL)
+	{
+		temp = temp->next;
+		cout << temp->item.message << endl;
 	}
-
-	// Read the contents of the file line by line
-	string line;
-	while (getline(file, line)) {
-		cout << line << endl;
-	}
-
-	// Close the file
-	file.close();
 }
 
-void TopicList::LoadTopics(string fileName) {
-	//Load the line from TXT file
+//void TopicList::PrintTopics(string fileName) {
+//	/*ifstream TopicFile;
+//	TopicFile.open("Topics.txt", ios::out);*/
+//	ifstream file(fileName);
+//
+//	// Check if the file was successfully opened
+//	if (!file.is_open()) {
+//		cout << "Failed to open file " << fileName << endl;
+//		return;
+//	}
+//
+//	// Read the contents of the file line by line
+//	string line;
+//	while (getline(file, line)) {
+//		cout << line << endl;
+//	}
+//
+//	// Close the file
+//	file.close();
+//}
+
+void TopicList::loadTopics() {
+	ifstream topicFile("Topics.txt");
+	string line;
+	while (getline(topicFile, line))
+	{
+		int pos = line.find(":");
+		string topicCreator = line.substr(0, pos);
+		string topicMessage = line.substr(pos + 1);
+		Topic topicData;
+		topicData.creator = topicCreator;
+		topicData.message = topicMessage;
+		add(topicData);
+	}
+	topicFile.close();
+}
+
+void TopicList::saveTopics()
+{
+	ofstream topicFile("Topics.txt");
+	for (int i = 0; i < size; i++)
+	{
+		Topic topicData = get(i);
+		if (topicData.message != "")
+		{
+			topicFile << topicData.creator << ":" << topicData.message << endl;
+		}
+	}
+	topicFile.close();
+	return;
 }
 
 

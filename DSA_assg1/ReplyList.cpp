@@ -20,7 +20,7 @@ ReplyList::~ReplyList()
 }
 
 
-bool ReplyList::add(ItemType item)
+bool ReplyList::add(ReplyItem item)
 {
 	Node* newNode = new Node;
 	newNode->item = item;
@@ -43,7 +43,7 @@ bool ReplyList::add(ItemType item)
 	return true;
 }
 
-bool ReplyList::add(int index, ItemType item) //firstnode is index 0
+bool ReplyList::add(int index, ReplyItem item) //firstnode is index 0
 {
 	if (index >= 0 && index < size)
 	{
@@ -105,7 +105,7 @@ void ReplyList::remove(int index)
 	}
 }
 
-ItemType ReplyList::get(int index)
+ReplyItem ReplyList::get(int index)
 {
 	if (index >= 0 && index <= size)
 	{
@@ -138,10 +138,46 @@ int ReplyList::getLength()
 void ReplyList::print()
 {
 	Node* temp = firstNode;
-	cout << temp->item.getMessage() << endl;
+	cout << temp->item.message << endl;
 	while (temp->next != NULL)
 	{
 		temp = temp->next;
-		cout << temp->item.getMessage() << endl;
+		cout << temp->item.message << endl;
 	}
+}
+
+void ReplyList::loadReplies()
+{
+	ifstream replyFile("Reply.txt");
+	string line;
+	while (getline(replyFile, line))
+	{
+		int pos = line.find(":");
+		string replyCreator = line.substr(0, pos);
+		string sample = line.substr(pos + 1);
+		int pos_2 = sample.find(":");
+		string replyPost = sample.substr(0, pos_2);
+		string replyMessage = sample.substr(pos_2 + 1);
+		Reply replyData;
+		replyData.creator = replyCreator;
+		replyData.postName = replyPost;
+		replyData.message = replyMessage;
+		add(replyData);
+	}
+	replyFile.close();
+}
+
+void ReplyList::saveReplies()
+{
+	ofstream replyFile("Reply.txt");
+	for (int i = 0; i < size; i++)
+	{
+		Reply replyData = get(i);
+		if (replyData.message != "")
+		{
+			replyFile << replyData.creator << ":" << replyData.postName << ":" << replyData.message << endl;
+		}
+	}
+	replyFile.close();
+	return;
 }

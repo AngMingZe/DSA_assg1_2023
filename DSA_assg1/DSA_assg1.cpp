@@ -107,10 +107,10 @@ int main()
                     if (Option == "1") {
                         cout << "Enter topic name: " << endl;
                         Topic newTopic;
-                        newTopic.setUsername(user.getUsername());
+                        newTopic.creator = user.getUsername();
                         string topicName;
                         getline(cin, topicName);
-                        newTopic.setMessage(topicName);
+                        newTopic.message = topicName;
                         topicList.add(newTopic);
                         //Go into that topic channel
                     }
@@ -120,7 +120,8 @@ int main()
                         //topicList.showOwnPost(); -> a function to show posts of user
                     }
                     else if (Option == "3") {
-                        topicList.PrintTopics("Topics.txt");
+                        topicList.loadTopics();
+                        topicList.print();
                     }
                     else if (Option == "4") {
                         user.setUsername("NULL");//Sets username of user to Null to allow for logging in again
@@ -164,7 +165,8 @@ int main()
 
         //View topics 
         else if (Option == "3") {
-            topicList.PrintTopics("Topics.txt");
+            topicList.loadTopics();
+            topicList.print();
         }
 
         else { cout << "Please enter 1,2,3 only please" << endl; }

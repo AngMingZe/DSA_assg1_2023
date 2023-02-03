@@ -130,11 +130,8 @@
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="DSA_assg1.cpp" />
     <ClCompile Include="List.cpp" />
-    <ClCompile Include="Post.cpp" />
     <ClCompile Include="PostList.cpp" />
-    <ClCompile Include="Reply.cpp" />
     <ClCompile Include="ReplyList.cpp" />
-    <ClCompile Include="Topic.cpp" />
     <ClCompile Include="TopicList.cpp" />
   </ItemGroup>
   <ItemGroup>

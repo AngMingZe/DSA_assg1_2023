@@ -20,7 +20,7 @@ PostList::~PostList()
 }
 
 
-bool PostList::add(ItemType item)
+bool PostList::add(PostItem item)
 {
 	Node* newNode = new Node;
 	newNode->item = item;
@@ -43,7 +43,7 @@ bool PostList::add(ItemType item)
 	return true;
 }
 
-bool PostList::add(int index, ItemType item) //firstnode is index 0
+bool PostList::add(int index, PostItem item) //firstnode is index 0
 {
 	if (index >= 0 && index < size)
 	{
@@ -105,7 +105,7 @@ void PostList::remove(int index)
 	}
 }
 
-ItemType PostList::get(int index)
+PostItem PostList::get(int index)
 {
 	if (index >= 0 && index <= size)
 	{
@@ -138,10 +138,46 @@ int PostList::getLength()
 void PostList::print()
 {
 	Node* temp = firstNode;
-	cout << temp->item.getMessage() << endl;
+	cout << temp->item.message << endl;
 	while (temp->next != NULL)
 	{
 		temp = temp->next;
-		cout << temp->item.getMessage() << endl;
+		cout << temp->item.message << endl;
 	}
+}
+
+void PostList::loadPosts()
+{
+	ifstream postFile("Post.txt");
+	string line;
+	while (getline(postFile, line))
+	{
+		int pos = line.find(":");
+		string postCreator = line.substr(0, pos);
+		string sample = line.substr(pos + 1);
+		int pos_2 = sample.find(":");
+		string postTopic = sample.substr(0, pos_2);
+		string postMessage = sample.substr(pos_2 + 1);
+		Post postData;
+		postData.creator = postCreator;
+		postData.topicName = postTopic;
+		postData.message = postMessage;
+		add(postData);
+	}
+	postFile.close();
+}
+
+void PostList::savePosts()
+{
+	ofstream postFile("Post.txt");
+	for (int i = 0; i < size; i++)
+	{
+		Post postData = get(i);
+		if (postData.message != "")
+		{
+			postFile << postData.creator << ":" << postData.topicName << ":" << postData.message << endl;
+		}
+	}
+	postFile.close();
+	return;
 }

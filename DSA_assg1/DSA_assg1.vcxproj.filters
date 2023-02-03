@@ -27,7 +27,13 @@
     <ClCompile Include="Account.cpp">
       <Filter>Source Files\Data Structure CPP</Filter>
     </ClCompile>
-    <ClCompile Include="Topic.cpp">
+    <ClCompile Include="PostList.cpp">
+      <Filter>Source Files\Data Structure CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="ReplyList.cpp">
+      <Filter>Source Files\Data Structure CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="TopicList.cpp">
       <Filter>Source Files\Data Structure CPP</Filter>
     </ClCompile>
   </ItemGroup>
@@ -42,6 +48,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Topic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PostList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Reply.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReplyList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TopicList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Post.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

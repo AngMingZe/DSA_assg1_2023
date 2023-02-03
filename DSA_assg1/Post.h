@@ -1,21 +1,9 @@
 #pragma once
-#include<iostream>
-#include<string>
+#include <string>
 using namespace std;
-
-class Post
+struct Post
 {
-private:
-	string username;
+	string creator;
+	string topicName;
 	string message;
-
-public:
-	Post();
-	Post(string username, string message);
-
-	void setUsername(string n);
-	string getUsername();
-	void setMessage(string p);
-	string getMessage();
 };
-
