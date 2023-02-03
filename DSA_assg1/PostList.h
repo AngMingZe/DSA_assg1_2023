@@ -6,14 +6,14 @@
 #include "Post.h"
 using namespace std;
 
-typedef Post ItemType;
+typedef Post ItemType2;
 
 class PostList
 {
 private:
 	struct Node
 	{
-		ItemType item;	// data item
+		ItemType2 item;	// data item
 		Node* next;	// pointer pointing to next item
 	};
 
@@ -29,14 +29,14 @@ public:
 	// pre : size < MAX_SIZE
 	// post: item is added to the back of the list
 	//       size of list is increased by 1
-	bool add(ItemType item);
+	bool add(ItemType2 item);
 
 	// add an item at a specified position in the list (insert)
 	// pre : 0 <= index <= size
 	// post: item is added to the specified position in the list
 	//       items after the position are shifted back by 1 position
 	//       size of list is increased by 1
-	bool add(int index, ItemType item);
+	bool add(int index, ItemType2 item);
 
 	// remove an item at a specified position in the list
 	// pre : 0 <= index < size
@@ -49,7 +49,7 @@ public:
 	// pre : 0 <= index < size
 	// post: none
 	// return the item in the specified index of the list
-	ItemType get(int index);
+	ItemType2 get(int index);
 
 	// check if the list is empty
 	// pre : none

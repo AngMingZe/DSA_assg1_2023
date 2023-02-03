@@ -20,7 +20,7 @@ PostList::~PostList()
 }
 
 
-bool PostList::add(ItemType item)
+bool PostList::add(ItemType2 item)
 {
 	Node* newNode = new Node;
 	newNode->item = item;
@@ -43,7 +43,7 @@ bool PostList::add(ItemType item)
 	return true;
 }
 
-bool PostList::add(int index, ItemType item) //firstnode is index 0
+bool PostList::add(int index, ItemType2 item) //firstnode is index 0
 {
 	if (index >= 0 && index < size)
 	{
@@ -105,7 +105,7 @@ void PostList::remove(int index)
 	}
 }
 
-ItemType PostList::get(int index)
+ItemType2 PostList::get(int index)
 {
 	if (index >= 0 && index <= size)
 	{

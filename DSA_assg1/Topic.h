@@ -20,5 +20,7 @@ public:
 	string getUsername();
 	void setMessage(string p);
 	string getMessage();
+
+	void addPost(Post p);
 };
 

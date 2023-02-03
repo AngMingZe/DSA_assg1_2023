@@ -44,7 +44,7 @@ int List::getLength() {
 	return size;
 }
 
-bool List::add(ItemType itm) {
+bool List::add(Account itm) {
 	//create new node
 	Node* temp = new Node;
 	temp->item = itm;
@@ -81,11 +81,11 @@ void List::saveTXT(Account att) {
 	MyFile.close();
 }
 
-bool List::dataValidation(Account data) {
+bool List::dataValidation(string name,string pw) {
 	Node* checker = firstNode;
 	for (int x = 0; x < size; x++) {
-		if (data.getUsername() == checker->item.getUsername()) {
-			if (data.getPassword() == checker->item.getPassword()) {
+		if (name == checker->item.getUsername()) {
+			if (pw == checker->item.getPassword()) {
 				return 1;//Returns true
 			}
 		}

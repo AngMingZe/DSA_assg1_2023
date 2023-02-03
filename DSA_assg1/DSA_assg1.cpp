@@ -50,19 +50,15 @@ void LoadAccounts(List& Alist){
 
 bool LogIn(List accountList,Account& user) {
     //Log in
-    cout << "Username: ";
     string NameInput;
+    string PWInput;
+    cout << "Username: ";
     getline(cin, NameInput);
     cout << "Password: ";
-    string PWInput;
     getline(cin, PWInput);
 
-    Account inputData;
-    inputData.setUsername(NameInput);
-    inputData.setpassword(PWInput);
-
-    bool checkforRecord = accountList.dataValidation(inputData);
-    if (checkforRecord) {
+    bool checkforRecord = accountList.dataValidation(NameInput,PWInput);
+    if (checkforRecord == 1) {
         //cout << "Success" << endl;
         user.setUsername(NameInput);
         user.setpassword(PWInput);
@@ -94,7 +90,8 @@ int main()
         //Log in
         if (Option == "1") {
             bool check = LogIn(accountList,user);
-            if (!check) {
+            if (check) {
+                cout << "Login success!" << endl;
                 while (true)
                 {
                     //View the menu and stuff
@@ -106,12 +103,16 @@ int main()
                     getline(cin, Option);
                     if (Option == "1") {
                         cout << "Enter topic name: " << endl;
-                        Topic newTopic;
+                        Topic newTopic; //create new topic
                         newTopic.setUsername(user.getUsername());
                         string topicName;
                         getline(cin, topicName);
                         newTopic.setMessage(topicName);
                         topicList.add(newTopic);
+                        Post p;
+                        p.setMessage("data");
+                        p.setUsername(user.getUsername());
+                        newTopic.addPost(p);
                         //Go into that topic channel
                     }
                     else if (Option == "2") {
@@ -146,7 +147,7 @@ int main()
             bool duplicateChecker = accountList.checkDuplicates(NameInput);
             if (duplicateChecker) {
                 cout << "Username already taken" << endl;
-                //continue;
+                continue;
             }
             cout << "Set a password: ";
             string PWInput;
@@ -170,3 +171,4 @@ int main()
         else { cout << "Please enter 1,2,3 only please" << endl; }
     }
 }
+

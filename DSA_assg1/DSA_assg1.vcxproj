@@ -150,6 +150,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="accounts.txt" />
+    <Text Include="Post.txt" />
+    <Text Include="Reply.txt" />
     <Text Include="Topics.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

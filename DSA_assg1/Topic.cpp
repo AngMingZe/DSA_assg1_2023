@@ -15,3 +15,7 @@ string Topic::getUsername() { return username; }
 void Topic::setMessage(string m) { message = m; }
 
 string Topic::getMessage() { return message; }
+
+void Topic::addPost(Post item) {
+	pList.add(item);
+}

@@ -4,6 +4,7 @@
 #include<iostream>
 #include <fstream>
 #include "Topic.h"
+#include "PostList.h"
 using namespace std;
 
 typedef Topic ItemType1;
