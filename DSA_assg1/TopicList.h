@@ -67,7 +67,8 @@ public:
 
 	// display the items in the list
 	void PrintTopics(string fileName);
-
+	//Load file items into list
+	void LoadTopics(string filename);
 	
 };
 

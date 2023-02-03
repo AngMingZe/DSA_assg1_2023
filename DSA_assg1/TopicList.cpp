@@ -156,4 +156,8 @@ void TopicList::PrintTopics(string fileName) {
 	file.close();
 }
 
+void TopicList::LoadTopics(string fileName) {
+	//Load the line from TXT file
+}
+
 

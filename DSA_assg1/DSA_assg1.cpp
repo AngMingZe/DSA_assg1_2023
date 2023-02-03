@@ -48,39 +48,88 @@ void LoadAccounts(List& Alist){
     MyReadFile.close();
 }
 
+bool LogIn(List accountList,Account& user) {
+    //Log in
+    cout << "Username: ";
+    string NameInput;
+    getline(cin, NameInput);
+    cout << "Password: ";
+    string PWInput;
+    getline(cin, PWInput);
+
+    Account inputData;
+    inputData.setUsername(NameInput);
+    inputData.setpassword(PWInput);
+
+    bool checkforRecord = accountList.dataValidation(inputData);
+    if (checkforRecord) {
+        //cout << "Success" << endl;
+        user.setUsername(NameInput);
+        user.setpassword(PWInput);
+        return true;
+    }
+    else {
+        //cout << "Username or password incorrect" << endl;
+        return false;
+    }
+}
 
 int main()
 {
+    string Option;//Stores the option of the user
     string temp;
-    List accountList;
-    TopicList topicList;
+    Account user; //Stores the infomation of the user
+    List accountList; //Stores the accounts
+    TopicList topicList; //Stores the topics
 
     LoadAccounts(accountList);
 
-    cout << "Welcome!" << endl;
-    cout << "Press 1 to log in, 2 to register for an account if you do not have one" << endl;
-    cout << "Press 3 if you want to look around, but you cannot post since you do not have an account" << endl;
+    
     while (true) {
+        cout << "Welcome!" << endl;
+        cout << "Press 1 to log in, 2 to register for an account if you do not have one" << endl;
+        cout << "Press 3 if you want to look around, but you cannot post since you do not have an account" << endl;
         cout << "Enter option: ";
-        string Option;
         getline(cin, Option);
         //Log in
         if (Option == "1") {
-            //Log in
-            cout << "Username: ";
-            string NameInput;
-            getline(cin, NameInput);
-            cout << "Password: ";
-            string PWInput;
-            getline(cin, PWInput);
-
-            Account inputData;
-            inputData.setUsername(NameInput);
-            inputData.setpassword(PWInput);
-
-            bool checkforRecord = accountList.dataValidation(inputData);
-            if (checkforRecord) {
-                cout << "Success" << endl;
+            bool check = LogIn(accountList,user);
+            if (check) {
+                while (true)
+                {
+                    //View the menu and stuff
+                    cout << "1. Create new topic" << endl;
+                    cout << "2. See your own posts" << endl;
+                    cout << "3. See topics" << endl;
+                    cout << "4. Log out" << endl;
+                    cout << "Option: ";
+                    getline(cin, Option);
+                    if (Option == "1") {
+                        cout << "Enter topic name: " << endl;
+                        Topic newTopic;
+                        newTopic.setUsername(user.getUsername());
+                        string topicName;
+                        getline(cin, topicName);
+                        newTopic.setMessage(topicName);
+                        topicList.add(newTopic);
+                        //Go into that topic channel
+                    }
+                    else if (Option == "2") {
+                        //display Post list, filtered by username
+                        //Another menu to show the things user can do  
+                        //topicList.showOwnPost(); -> a function to show posts of user
+                    }
+                    else if (Option == "3") {
+                        topicList.PrintTopics("Topics.txt");
+                    }
+                    else if (Option == "4") {
+                        user.setUsername("NULL");//Sets username of user to Null to allow for logging in again
+                        break;
+                    }
+                    else {
+                        cout << "Please enter only what can be done shown in the menu!" << endl;
+                    }
+                }
             }
             else {
                 cout << "Username or password incorrect" << endl;
