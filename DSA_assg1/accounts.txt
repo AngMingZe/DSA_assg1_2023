@@ -2,5 +2,3 @@ mz
 123
 terr
 1234
-gupper
-gg
