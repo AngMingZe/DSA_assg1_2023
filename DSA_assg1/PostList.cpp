@@ -43,34 +43,6 @@ bool PostList::add(PostItem item)
 	return true;
 }
 
-void PostList::remove(int index)
-{
-	if (index >= 0 && index < size)
-	{
-		Node* temp = firstNode;
-		int indexCount = 0;
-		if (index == 0)
-		{
-			firstNode = firstNode->next;
-			delete temp;
-		}
-		else
-		{
-			while (indexCount != index - 1)
-			{
-				temp = temp->next;
-				indexCount++;
-			}
-			temp->next = temp->next->next;
-			temp = temp->next;
-			delete temp;
-		}
-		size--;
-	}
-	else {
-		cout << "No item in index" << endl;
-	}
-}
 
 void PostList::remove(string message) {
 	Node* prev = firstNode;
@@ -91,21 +63,6 @@ void PostList::remove(string message) {
 		delete temp;
 	}
 	size--;
-}
-
-int PostList::getIndex(string message)
-{
-	Node* temp = firstNode;
-	int index = -1;
-	while (temp != NULL)
-	{
-		if (temp->item.message == message) {
-
-		}
-		temp = temp->next;
-		index++;
-	}
-	return index;
 }
 
 PostItem PostList::indexGet(int index)
@@ -201,16 +158,6 @@ bool PostList::isEmpty()
 int PostList::getLength()
 {
 	return size;
-}
-
-void PostList::print()
-{
-	Node* temp = firstNode;
-	while (temp != NULL)
-	{
-		cout << temp->item.message << endl;
-		temp = temp->next;
-	}
 }
 
 void PostList::loadPosts()

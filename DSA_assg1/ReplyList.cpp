@@ -222,16 +222,6 @@ int ReplyList::getLength()
 	return size;
 }
 
-void ReplyList::print()
-{
-	Node* temp = firstNode;
-	while (temp != NULL)
-	{
-		cout << temp->item.message << endl;
-		temp = temp->next;
-	}
-}
-
 void ReplyList::loadReplies()
 {
 	ifstream replyFile("Reply.txt");

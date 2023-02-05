@@ -20,63 +20,75 @@ private:
 	int  size;			// number of items in the list
 
 public:
-	ReplyList();			// constructor
+	ReplyList(); // constructor
 
 	~ReplyList();// destructor
 
-	// add an item to the back of the list (append)
-	// pre : size < MAX_SIZE
-	// post: item is added to the back of the list
-	//       size of list is increased by 1
+	// parameter: ReplyItem to be added into linkedList
+	// return: true or false
+	// adds a node with ReplyItem into the LinkedList
 	bool add(ReplyItem item);
 
-	// remove an item at a specified position in the list
-	// pre : 0 <= index < size
-	// post: item is removed the specified position in the list
-	//       items after the position are shifted forward by 1 position
-	//       size of list is decreased by 1
+	// parameter: Node at index to be removed
+	// return: NIL
+	// removes the node at the index
 	void remove(int index);
 
+	// parameter: topicName of Node->ReplyItem to be removed
+	// return: NIL
+	// removes the node with the same topicName as parameter
 	void remove(string topicName);
 
+	// parameter: string message of the ReplyItem
+	// return: int index of the Node
+	// finds the index of the Node in the LinkedList with Node->item.message
 	int getIndex(string message);
 
-	// get an item at a specified position of the list (retrieve)
-	// pre : 0 <= index < size
-	// post: none
+	// parameter: index of the ReplyItem we want
+	// return: ReplyItem at the specified index
 	// return the item in the specified index of the list
 	ReplyItem indexGet(int index);
 
+	// parameter: string message used to find ReplyItem to edit, new string message to change ReplyItem.message to
+	// return: NIL
+	// changes the message of the ReplyItem with the same message as first parameter into the second parameter
 	void stringGet(string message, string newMessage);
 
+	// parameter: string topicName used to find ReplyItem to edit, string new TopicName to change ReplyItem.topicName to
+	// return: NIL
+	// changes the topicName of the ReplyItem with the same message as first parameter into the second parameter 
 	void postEdited(string postName, string newPostName);
 
+	// parameter: string topicName to find posts to print
+	// return: ReplyList with only the posts with same topicName (under the topic)
+	// creates a ReplyList and adds all posts with same topicName and prints them
 	void getPrint(string postName);
 
+	// parameter: string username to find posts created by user
+	// return: ReplyList with only the posts with same username (created by the user)
+	// creates a ReplyList and adds all posts with same username and prints them
 	ReplyList ownReplies(string username);
 
-	// check if the list is empty
-	// pre : none
-	// post: none
-	// return true if the list is empty; otherwise returns false
+	// parameter: NIL
+	// return: true if the list is empty; otherwise returns false
+	//check if the list is empty
 	bool isEmpty();
 
+	// parameter: NIL
+	// return: the number of items in the list
 	// check the size of the list
-	// pre : none
-	// post: none
-	// return the number of items in the list
 	int getLength();
 
-	//------------------- Other useful functions -----------------
+	//------------------- Saving and Loading Data files -----------------
 
-	// display the items in the list
-	void print();
-
+	// parameter: NIL
+	// return: NIL
+	// reads the data inside Reply.txt and populate them into a LinkedList
 	void loadReplies();
 
+	// parameter: NIL
+	// return: NIL
+	// writes the data in the LinkedList into Reply.txt
 	void saveReplies();
-
-	// void replace(int index, ReplyItem item);
-	// int search(ReplyItem item);
 };
 

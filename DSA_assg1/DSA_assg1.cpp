@@ -286,7 +286,7 @@ int main()
                                     //else {
                                     //    cout << "incorrect input";
                                     //}
-                                    cout << "Not yet finished" << endl;
+                                    cout << "" << endl;
                                 }
                                 else if (Option == "post") {
                                     cout << "which? ";

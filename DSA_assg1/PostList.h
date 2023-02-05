@@ -21,66 +21,65 @@ private:
 	int  size;			// number of items in the list
 
 public:
-	PostList();			// constructor
+	PostList();	// constructor
 
 	~PostList();// destructor
 
-	// add an item to the back of the list (append)
-	// pre : size < MAX_SIZE
-	// post: item is added to the back of the list
-	//       size of list is increased by 1
+	// parameter: PostItem to be added into linkedList
+	// return: true or false
+	// adds a node with PostItem into the LinkedList
 	bool add(PostItem item);
 
-	// remove an item at a specified position in the list
-	// pre : 0 <= index < size
-	// post: item is removed the specified position in the list
-	//       items after the position are shifted forward by 1 position
-	//       size of list is decreased by 1
-	void remove(int index);
-
-	//remove by string
+	// parameter: topicName of Node->PostItem to be removed
+	// return: NIL
+	// removes the node with the same topicName as parameter
 	void remove(string topicName);
 
-	int getIndex(string message);
-
-	// get an item at a specified position of the list (retrieve)
-	// pre : 0 <= index < size
-	// post: none
+	// parameter: index of the PostItem we want
+	// return: PostItem at the specified index
 	// return the item in the specified index of the list
 	PostItem indexGet(int index);
 
+	// parameter: string message used to find PostItem to edit, new string message to change PostItem.message to
+	// return: NIL
+	// changes the message of the PostItem with the same message as first parameter into the second parameter 
 	void stringGet(string message, string newMessage);
 
+	// parameter: string topicName used to find PostItem to edit, string new TopicName to change PostItem.topicName to
+	// return: NIL
+	// changes the topicName of the PostItem with the same message as first parameter into the second parameter 
 	void topicEdited(string topicName, string newTopicName);
 
+	// parameter: string topicName to find posts to print
+	// return: PostList with only the posts with same topicName (under the topic)
+	// creates a PostList and adds all posts with same topicName and prints them
 	PostList getPrint(string topicName);
 
+	// parameter: string username to find posts created by user
+	// return: PostList with only the posts with same username (created by the user)
+	// creates a PostList and adds all posts with same username and prints them
 	PostList ownPosts(string username);
 
-	// check if the list is empty
-	// pre : none
-	// post: none
-	// return true if the list is empty; otherwise returns false
+	// parameter: NIL
+	// return: true if the list is empty; otherwise returns false
+	//check if the list is empty
 	bool isEmpty();
 
+	// parameter: NIL
+	// return: the number of items in the list
 	// check the size of the list
-	// pre : none
-	// post: none
-	// return the number of items in the list
 	int getLength();
 
-	//------------------- Other useful functions -----------------
+	//------------------- Saving and Loading Data files -----------------
 
-	// display the items in the list
-	void print();
-
+	// parameter: NIL
+	// return: NIL
+	// reads the data inside Post.txt and populate them into a LinkedList
 	void loadPosts();
 
+	// parameter: NIL
+	// return: NIL
+	// writes the data in the LinkedList into Post.txt
 	void savePosts();
-
-	// void replace(int index, PostItem item);
-	// int search(PostItem item);
-
-	void pinPost(Post item);
 };
 
