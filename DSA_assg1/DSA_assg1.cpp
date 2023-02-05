@@ -82,14 +82,13 @@ void createTopic(TopicList topicList, Account user) {
     topicList.saveTopics();
 }
 
-bool lettersCheck(string str) {
-    bool check = true;
-    while (check) {
-        for (int i = 0; i <= str.length(); ++i) {
-            check = isalpha(str[i]);
+bool numberCheck(string str) {
+    for (int i = 0; i <= str.length(); i++) {
+        if (isdigit(str[i])) {
+            return true;
         }
     }
-    return check;
+    return false;
 }
 
 int main()
@@ -417,7 +416,11 @@ int main()
                 topicList.print();
                 cout << "Topic to view (negative number to go back): ";
                 getline(cin, Option);
-                if (stoi(Option) > topicList.getLength() - 1 || lettersCheck(Option) == false) {
+                cout << Option << endl;
+                if (!numberCheck(Option)) {
+                    cout << "Please enter a number" << endl;
+                }
+                else if (stoi(Option) > topicList.getLength() - 1) {
                     cout << "invalid topic number, please try again." << endl;
                 }
                 else if (stoi(Option) >= 0) {
