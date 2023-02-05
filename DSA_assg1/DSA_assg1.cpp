@@ -109,9 +109,9 @@ int main()
     replyList.loadReplies();
 
     cout << "Welcome!" << endl;
-    cout << "How would you like to sort the topics today?" << endl;
     cout << "1. by Oldest" << endl;
     cout << "2. by Latest" << endl;
+    cout << "How would you like to sort the topics today? ";
     string sortInput;
     getline(cin, sortInput);
     if (sortInput == "1") {
@@ -174,7 +174,7 @@ int main()
                             cout << endl;
                             cout << "Replies" << endl;
                             ReplyList ownReplies = replyList.ownReplies(user.getUsername());
-                            cout << "Edit/Delete/Back: ";
+                            cout << "Edit/Delete (negative number to go back): ";
                             getline(cin, Option);
                             //convert input to lowercase
                             transform(Option.begin(), Option.end(), Option.begin(),
@@ -210,7 +210,7 @@ int main()
                                         postList.savePosts();
                                     }
                                     else {
-                                        cout << "incorrect input";
+                                        cout << "invalid input, please try again.";
                                     }
                                 }
                                 else if (Option == "post") {
@@ -254,11 +254,11 @@ int main()
                                         replyList.saveReplies();
                                     }
                                     else {
-                                        cout << "incorrect input";
+                                        cout << "invalid input, please try again.";
                                     }
                                 }
                                 else {
-                                    cout << "incorrect input";
+                                    cout << "invalid input, please try again.";
                                 }
                             }
                             else if (Option == "delete") {
@@ -305,7 +305,7 @@ int main()
                                         replyList.saveReplies();
                                     }
                                     else {
-                                        cout << "incorrect input";
+                                        cout << "invalid input, please try again.";
                                     }
                                 }
                                 else if (Option == "reply") {
@@ -323,18 +323,21 @@ int main()
                                         replyList.saveReplies();
                                     }
                                     else {
-                                        cout << "incorrect input";
+                                        cout << "invalid input, please try again.";
                                     }
                                 }
                                 else {
-                                    cout << "incorrect input";
+                                    cout << "invalid input, please try again.";
                                 }
                             }
-                            else if (Option == "back") {
+                            else if (!numberCheck(Option)) {
+                                cout << "invalid input, please try again." << endl;
+                            }
+                            else if (stoi(Option) < 0) {
                                 break;
                             }
                             else {
-                                cout << "wrong input" << endl;
+                                cout << "invalid input, please try again." << endl;
                             }
                         }
                     }

@@ -5,3 +5,5 @@ terr:Apple:Red apple
 terr:Pear:Are pears better than apple?
 terr:Pear:Pear are bad for you!!!
 mz:Cooking:use your middle finger to guide the knife
+terr:Cooking:yea
+terr:finally finished assignments:yay
