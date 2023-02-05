@@ -168,7 +168,7 @@ int main()
                                 if (Option == "Topic") {
                                     cout << "which? ";
                                     getline(cin, Option);
-                                    if (stoi(Option) > ownTopics.getLength() - 1 || lettersCheck(Option) == false) {
+                                    if (!numberCheck(Option) || stoi(Option) > ownTopics.getLength() - 1) {
                                         cout << "invalid topic number, please try again." << endl;
                                     }
                                     else if (stoi(Option) >= 0) {
@@ -190,7 +190,7 @@ int main()
                                 else if (Option == "Post") {
                                     cout << "which? ";
                                     getline(cin, Option);
-                                    if (stoi(Option) > ownPosts.getLength() - 1 || lettersCheck(Option) == false) {
+                                    if (!numberCheck(Option) || stoi(Option) > ownPosts.getLength() - 1) {
                                         cout << "invalid post number, please try again." << endl;
                                     }
                                     else if (stoi(Option) >= 0) {
@@ -212,7 +212,7 @@ int main()
                                 else if (Option == "Reply") {
                                     cout << "which? ";
                                     getline(cin, Option);
-                                    if (stoi(Option) > ownReplies.getLength() - 1 || lettersCheck(Option) == false) {
+                                    if (!numberCheck(Option) || stoi(Option) > ownReplies.getLength() - 1) {
                                         cout << "invalid reply number, please try again." << endl;
                                     }
                                     else if (stoi(Option) >= 0) {
@@ -241,7 +241,7 @@ int main()
                                 if (Option == "Topic") {
                                     cout << "which? ";
                                     getline(cin, Option);
-                                    if (stoi(Option) > ownTopics.getLength() - 1 || lettersCheck(Option) == false) {
+                                    if (!numberCheck(Option) || stoi(Option) > ownTopics.getLength() - 1 ) {
                                         cout << "invalid topic number, please try again." << endl;
                                     }
                                     else if (stoi(Option) >= 0) {
@@ -259,7 +259,7 @@ int main()
                                 else if (Option == "Post") {
                                     cout << "which? ";
                                     getline(cin, Option);
-                                    if (stoi(Option) > ownPosts.getLength() - 1 || lettersCheck(Option) == false) {
+                                    if (!numberCheck(Option) || stoi(Option) > ownPosts.getLength() - 1 ) {
                                         cout << "invalid post number, please try again." << endl;
                                     }
                                     else if (stoi(Option) >= 0) {
@@ -277,7 +277,7 @@ int main()
                                 else if (Option == "Reply") {
                                     cout << "which? ";
                                     getline(cin, Option);
-                                    if (stoi(Option) > ownReplies.getLength() - 1 || lettersCheck(Option) == false) {
+                                    if (!numberCheck(Option) || stoi(Option) > ownReplies.getLength() - 1) {
                                         cout << "invalid reply number, please try again." << endl;
                                     }
                                     else if (stoi(Option) >= 0) {
@@ -306,7 +306,7 @@ int main()
                             topicList.print();
                             cout << "Topic to view (negative number to go back): ";
                             getline(cin, Option);
-                            /*if (stoi(Option) > topicList.getLength() - 1 || lettersCheck(Option)) {
+                            /*if (stoi(Option) > topicList.getLength() - 1 || !numberCheck(Option)) {
                                 cout << "invalid topic number, please try again." << endl;
                             }*/
                             if (stoi(Option) >= 0) {
@@ -321,7 +321,7 @@ int main()
                                     PostList topicPosts = postList.getPrint(topicName.message);
                                     cout << "view Replies (negative number to go back) or 10 to create new post: ";
                                     getline(cin, Option);
-                                    if (stoi(Option) > topicPosts.getLength() - 1 || lettersCheck(Option) == false) {
+                                    if (!numberCheck(Option) || stoi(Option) > topicPosts.getLength() - 1 ) {
                                         cout << "invalid post number, please try again." << endl;
                                     }
                                     else if (Option == "10") {
@@ -416,11 +416,7 @@ int main()
                 topicList.print();
                 cout << "Topic to view (negative number to go back): ";
                 getline(cin, Option);
-                cout << Option << endl;
-                if (!numberCheck(Option)) {
-                    cout << "Please enter a number" << endl;
-                }
-                else if (stoi(Option) > topicList.getLength() - 1) {
+                if (!numberCheck(Option) || stoi(Option) > topicList.getLength() - 1) {
                     cout << "invalid topic number, please try again." << endl;
                 }
                 else if (stoi(Option) >= 0) {
@@ -436,7 +432,7 @@ int main()
                         PostList topicPosts = postList.getPrint(topicName.message);
                         cout << "View Replies (negative number to go back): ";
                         getline(cin, Option);
-                        if (stoi(Option) > topicPosts.getLength() - 1 || lettersCheck(Option) == false) {
+                        if (!numberCheck(Option) || stoi(Option) > topicPosts.getLength() - 1) {
                             cout << "invalid post number, please try again." << endl;
                         }
                         else if (stoi(Option) >= 0) {
