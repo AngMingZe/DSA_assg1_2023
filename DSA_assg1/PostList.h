@@ -82,5 +82,7 @@ public:
 
 	// void replace(int index, PostItem item);
 	// int search(PostItem item);
+
+	void pinPost(Post item);
 };
 

@@ -188,6 +188,7 @@ PostList PostList::ownPosts(string username) {
 	}
 	return postList;
 }
+
 bool PostList::isEmpty()
 {
 	if (size > 0) {
@@ -247,4 +248,9 @@ void PostList::savePosts()
 	}
 	postFile.close();
 	return;
+}
+
+void PostList::pinPost(Post item) {
+	//Sets post selected as pinned, making it always appear at the top of the post list
+	cout << "nothing";
 }

@@ -139,6 +139,11 @@ TopicItem TopicList::indexGet(int index)
 
 TopicItem TopicList::stringGet(string message)
 {
+	return TopicItem();
+}
+
+TopicItem TopicList::getItem(string message)
+{
 	Node* temp = firstNode;
 	Topic tempItem;
 	while (true)
@@ -153,6 +158,23 @@ TopicItem TopicList::stringGet(string message)
 		break;
 	}
 	return tempItem;
+}
+
+bool TopicList::search(string input) {
+	Node* temp = firstNode;
+	Topic tempItem;
+	while (true)
+	{
+		while (temp != NULL)
+		{
+			if (temp->item.message == input) {
+				return true;
+			}
+			temp = temp->next;
+		}
+		break;
+	}
+	return false;
 }
 
 TopicList TopicList::ownTopics(string username) {
@@ -196,6 +218,24 @@ void TopicList::print()
 		index++;
 		temp = temp->next;
 	}
+}
+
+void TopicList::reverse() {
+	Node* current = firstNode;
+	Node* prev = NULL;
+	Node* next = NULL;
+	while (current != NULL) {
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	firstNode = prev;
+}
+
+void TopicList::printByLatest() {
+	reverse();
+	print();
 }
 
 void TopicList::loadTopics() {

@@ -56,6 +56,8 @@ public:
 
 	TopicItem stringGet(string message);
 
+	TopicItem getItem(string input);
+
 	TopicList ownTopics(string username);
 
 	// check if the list is empty
@@ -81,6 +83,10 @@ public:
 
 	void createTopic(Topic topic);
 	
+	void reverse();
+	void printByLatest();
+
+	bool search(string input);
 };
 
 //Topic

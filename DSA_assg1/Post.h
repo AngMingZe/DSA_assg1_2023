@@ -6,4 +6,5 @@ struct Post
 	string creator;
 	string topicName;
 	string message;
+	bool pinned = false;
 };

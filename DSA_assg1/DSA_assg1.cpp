@@ -414,9 +414,47 @@ int main()
         else if (Option == "3") {
             while (true) {
                 topicList.print();
-                cout << "Topic to view (negative number to go back): ";
+                cout << "Topic to view (negative number to go back,enter 'search' to search for topic): ";
                 getline(cin, Option);
-                if (!numberCheck(Option) || stoi(Option) > topicList.getLength() - 1) {
+                if (Option == "search") {
+                    cout << "Enter topic:";
+                    string input;
+                    getline(cin, input);
+                    bool result = topicList.search(input);
+                    if (result) {
+                        Topic topicName = topicList.getItem(input);
+                        while (true) {
+                            //print chosen topic
+                            cout << topicName.message << endl << endl;
+                            //go through all posts, if post.topicName = topic.message then print
+                            // need to create a postlist object
+                            // have it contain only the post of the topic
+                            PostList topicPosts = postList.getPrint(topicName.message);
+                            cout << "View Replies (negative number to go back): ";
+                            getline(cin, Option);
+                            if (!numberCheck(Option) || stoi(Option) > topicPosts.getLength() - 1) {
+                                cout << "invalid post number, please try again." << endl;
+                            }
+                            else if (stoi(Option) >= 0) {
+                                Post postName = topicPosts.indexGet(stoi(Option));
+                                cout << postName.message << endl << endl;
+                                replyList.getPrint(postName.message);
+                                cout << "enter anything to go back: ";
+                                getline(cin, Option);
+                                if (Option != "") {
+                                    continue;
+                                }
+                            }
+                            else {
+                                break;
+                            }
+                        }
+                    }
+                    else {
+                        cout << "Topic was not found" << endl;
+                    }
+                }
+                else if (!numberCheck(Option) || stoi(Option) > topicList.getLength() - 1) {
                     cout << "invalid topic number, please try again." << endl;
                 }
                 else if (stoi(Option) >= 0) {
