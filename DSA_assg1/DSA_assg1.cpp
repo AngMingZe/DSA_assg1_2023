@@ -1,5 +1,5 @@
-//Ang Ming Ze,S10203953
-//Terrence Eng, 
+//Ang Ming Ze,S10203953B
+//Terrence Eng,S10223166H
 //DSA P02, Group 4
 #include <algorithm>
 #include <iostream>
