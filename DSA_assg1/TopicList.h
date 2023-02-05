@@ -40,7 +40,6 @@ public:
 	//       size of list is decreased by 1
 	void remove(int index);
 
-	int getIndex(string message);
 
 	// Retrieve a Topic object/item at a specified position of the list 
 	TopicItem indexGet(int index);

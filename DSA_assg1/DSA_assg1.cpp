@@ -267,24 +267,26 @@ int main()
                                 transform(Option.begin(), Option.end(), Option.begin(),
                                     [](unsigned char c) { return tolower(c); });
                                 if (Option == "topic") {
-                                    cout << "which? ";
-                                    getline(cin, Option);
-                                    if (!numberCheck(Option) || stoi(Option) > ownTopics.getLength() - 1 ) {
-                                        cout << "invalid topic number, please try again." << endl;
-                                    }
-                                    else if (stoi(Option) >= 0) {
-                                        //get the topic
-                                        Topic selectedTopic = ownTopics.indexGet(stoi(Option));
-                                        topicList.remove(selectedTopic.message);
-                                        postList.remove(selectedTopic.message);
-                                        //search for postName
-                                        //if return false, remove
-                                        //horrible time complexity
-                                        topicList.saveTopics();
-                                    }
-                                    else {
-                                        cout << "incorrect input";
-                                    }
+                                    //cout << "which? ";
+                                    //getline(cin, Option);
+                                    //if (!numberCheck(Option) || stoi(Option) > ownTopics.getLength() - 1 ) {
+                                    //    cout << "invalid topic number, please try again." << endl;
+                                    //}
+                                    //else if (stoi(Option) >= 0) {
+                                    //    //get the topic
+                                    //    Topic selectedTopic = ownTopics.indexGet(stoi(Option));
+                                    //    topicList.remove(selectedTopic.message);
+                                    //    postList.remove(selectedTopic.message);
+                                    //    replyList.remove(selectedTopic.message);
+                                    //    //search for postName
+                                    //    //if return false, remove
+                                    //    //horrible time complexity
+                                    //    topicList.saveTopics();
+                                    //}
+                                    //else {
+                                    //    cout << "incorrect input";
+                                    //}
+                                    cout << "Not yet finished" << endl;
                                 }
                                 else if (Option == "post") {
                                     cout << "which? ";
