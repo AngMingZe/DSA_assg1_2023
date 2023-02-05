@@ -387,7 +387,7 @@ int main()
                                             [](unsigned char c) { return tolower(c); });
                                         if (Option == "reply") {
                                             //create new reply
-                                            cout << "Enter post: ";
+                                            cout << "Enter reply: ";
                                             string message;
                                             getline(cin, message);
                                             Reply newReply;
