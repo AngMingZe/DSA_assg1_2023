@@ -25,58 +25,78 @@ public:
 
 	~TopicList();// destructor
 
+	//parameter:Topic object 
+	//return: Returns True if added, false if cannot add
 	//Adds a Topic item to the list
 	bool add(TopicItem item);
 
-
-	// Remove an item at a specified position in the list
-
-	void remove(string message);
-	// Gets the position of the item 
-	int getIndex(string message);
-	// pre : 0 <= index < size
-	// post: item is removed the specified position in the list
-	//       items after the position are shifted forward by 1 position
-	//       size of list is decreased by 1
+	//parameter:Name of topic user wants to remove
+	//return: NIL
+	//Removes the topic name from the topic list the user inputs
+	void remove(string topicName);
+	
+	//parameter:index number 
+	//return: NIL
+	//Removes the object specified at the index in the list
 	void remove(int index);
 
-
-	// Retrieve a Topic object/item at a specified position of the list 
+	//parameter:index number 
+	//return: Returns Topic object 
+	//Finds a Topic object given the input(the index) and returns it
 	TopicItem indexGet(int index);
 
-	void stringGet(string message, string newMessage);
+	//parameter:Current topic name and new topic name
+	//return: NIL
+	//Changes topic name (Editing topic name)
+	void stringGet(string currentTopicName, string newTopicName);
 
-	//If input == topic in list, return Topic object
+	//parameter:string input
+	//return: NIL
+	//Finds the topic object given the name of the object and returns it
 	TopicItem getItem(string input);
 
-	//Retrives the topic created by user(the input)
+	//parameter:user's username
+	//return: TopicList object
+	//Returns a topic list that contains posts that the user posted
 	TopicList ownTopics(string username);
 
-
-	// check if the list is empty
+	//parameter:NIL
+	//return: True or false
+	//Checks if list is empty
 	bool isEmpty();
 
-	// check the size of the list
+	//parameter:NIL
+	//return: size of the list
+	//Gets the size of the list and returns it
 	int getLength();
 
+	//parameter:NIL
+	//return: NIL
 	//Prints the contents of the list
 	void print();
 
-	// display the items in the list
+	//parameter:NIL
+	//return: NIL
+	//Load the topics from the text file and add it into a TopicList object
 	void loadTopics();
 
-	//Load file items into list
+	//parameter:NIL
+	//return: NIL
+	//Saves the objects in the list into a text file
 	void saveTopics();
 
-	// Creates a Topic object
+	//parameter:Topic object
+	//return:NIL
+	//Creates a Topic object
 	void createTopic(Topic topic);
 	
-	//Reverese the list
+	//parameter:Topic object
+	//return:NIL
+	//Reverse the list
 	void reverse();
 
-	//Print the list sorted by latest 
-	void printByLatest();
-
-	//Searches for the input in the list, if found return true
+	//parameter:string topic name 
+	//return:True or false
+	//Searches for the input in the list, returns true if found
 	bool search(string input);
 };
