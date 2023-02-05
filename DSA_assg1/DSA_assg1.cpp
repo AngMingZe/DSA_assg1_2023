@@ -106,9 +106,21 @@ int main()
     postList.loadPosts();
     replyList.loadReplies();
 
-    
+    cout << "Welcome!" << endl;
+    cout << "How would you like to sort the topics today?" << endl;
+    cout << "1. Default" << endl;
+    cout << "2. Latest" << endl;
+    string sortInput;
+    getline(cin, sortInput);
+    if (sortInput == "1") {
+        cout << "Topics will be shown by our default settings" << endl;
+    }
+    else if (sortInput == "2") {
+        topicList.reverse();
+        cout << "Topics will be shown with the latest being on top" << endl;
+    }
+
     while (true) {
-        cout << "Welcome!" << endl;
         cout << "Press 1 to log in, 2 to register for an account if you do not have one" << endl;
         cout << "Press 3 if you want to look around, but you cannot post since you do not have an account" << endl;
         cout << "Enter option: ";

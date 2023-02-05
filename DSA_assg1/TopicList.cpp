@@ -146,16 +146,13 @@ TopicItem TopicList::getItem(string message)
 {
 	Node* temp = firstNode;
 	Topic tempItem;
-	while (true)
+	while (temp != NULL)
 	{
-		while (temp != NULL)
-		{
-			if (temp->item.message == message) {
-				Topic tempItem = temp->item;
-			}
-			temp = temp->next;
+		if (temp->item.message == message) {
+			Topic tempItem = temp->item;
+			return tempItem;
 		}
-		break;
+		temp = temp->next;
 	}
 	return tempItem;
 }
