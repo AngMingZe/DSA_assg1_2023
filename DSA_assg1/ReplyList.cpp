@@ -133,7 +133,7 @@ int ReplyList::getIndex(string message)
 	}
 }
 
-ReplyItem ReplyList::indexGet(int index)
+ReplyItem ReplyList::get(int index)
 {
 	if (index >= 0 && index <= size)
 	{
@@ -149,7 +149,7 @@ ReplyItem ReplyList::indexGet(int index)
 }
 
 //change name of messsage in post.txt
-void ReplyList::stringGet(string message, string newMessage)
+void ReplyList::EditName(string message, string newMessage)
 {
 	Node* temp = firstNode;
 	while (temp != NULL)
@@ -248,7 +248,7 @@ void ReplyList::saveReplies()
 	ofstream replyFile("Reply.txt");
 	for (int i = 0; i < size; i++)
 	{
-		Reply replyData = indexGet(i);
+		Reply replyData = get(i);
 		if (replyData.message != "")
 		{
 			replyFile << replyData.creator << ":" << replyData.postName << ":" << replyData.message << endl;

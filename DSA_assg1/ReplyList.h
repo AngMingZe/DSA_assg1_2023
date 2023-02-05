@@ -47,12 +47,12 @@ public:
 	// parameter: index of the ReplyItem we want
 	// return: ReplyItem at the specified index
 	// return the item in the specified index of the list
-	ReplyItem indexGet(int index);
+	ReplyItem get(int index);
 
 	// parameter: string message used to find ReplyItem to edit, new string message to change ReplyItem.message to
 	// return: NIL
 	// changes the message of the ReplyItem with the same message as first parameter into the second parameter
-	void stringGet(string message, string newMessage);
+	void EditName(string message, string newMessage);
 
 	// parameter: string topicName used to find ReplyItem to edit, string new TopicName to change ReplyItem.topicName to
 	// return: NIL

@@ -96,7 +96,7 @@ void TopicList::remove(string message) {
 }
 
 //change to get
-TopicItem TopicList::indexGet(int index)
+TopicItem TopicList::get(int index)
 {
 	if (index >= 0 && index <= size)
 	{
@@ -112,7 +112,7 @@ TopicItem TopicList::indexGet(int index)
 }
 
 //changes the topic message in topic.txt
-void TopicList::stringGet(string message, string newMessage)
+void TopicList::EditName(string message, string newMessage)
 {
 	Node* temp = firstNode;
 	while (temp != NULL)
@@ -235,7 +235,7 @@ void TopicList::saveTopics()
 	ofstream topicFile("Topics.txt");
 	for (int i = 0; i < size; i++)
 	{
-		Topic topicData = indexGet(i);
+		Topic topicData = get(i);
 		if (topicData.message != "")
 		{
 			topicFile << topicData.creator << ":" << topicData.message << endl;

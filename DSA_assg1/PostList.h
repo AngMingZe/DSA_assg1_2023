@@ -38,12 +38,12 @@ public:
 	// parameter: index of the PostItem we want
 	// return: PostItem at the specified index
 	// return the item in the specified index of the list
-	PostItem indexGet(int index);
+	PostItem get(int index);
 
 	// parameter: string message used to find PostItem to edit, new string message to change PostItem.message to
 	// return: NIL
 	// changes the message of the PostItem with the same message as first parameter into the second parameter 
-	void stringGet(string message, string newMessage);
+	void EditName(string message, string newMessage);
 
 	// parameter: string topicName used to find PostItem to edit, string new TopicName to change PostItem.topicName to
 	// return: NIL

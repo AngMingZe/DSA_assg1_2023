@@ -192,13 +192,13 @@ int main()
                                     }
                                     else if (stoi(Option) >= 0) {
                                         //get the topic
-                                        Topic selectedTopic = ownTopics.indexGet(stoi(Option));
+                                        Topic selectedTopic = ownTopics.get(stoi(Option));
                                         //ask for new message
                                         cout << "new message: ";
                                         string message;
                                         getline(cin, message);
                                         //find the selectedTopic in topicList;
-                                        topicList.stringGet(selectedTopic.message, message);
+                                        topicList.EditName(selectedTopic.message, message);
                                         postList.topicEdited(selectedTopic.message, message);
                                         //change name of topic in post.txt
                                         // parsh in selectedTopic.message
@@ -221,13 +221,13 @@ int main()
                                     }
                                     else if (stoi(Option) >= 0) {
                                         //get the topic
-                                        Post selectedPost = ownPosts.indexGet(stoi(Option));
+                                        Post selectedPost = ownPosts.get(stoi(Option));
                                         //ask for new message
                                         cout << "new message: ";
                                         string message;
                                         getline(cin, message);
                                         //find the selectedTopic in topicList;
-                                        postList.stringGet(selectedPost.message, message);
+                                        postList.EditName(selectedPost.message, message);
                                         replyList.postEdited(selectedPost.message, message);
                                         postList.savePosts();
                                         replyList.saveReplies();
@@ -244,13 +244,13 @@ int main()
                                     }
                                     else if (stoi(Option) >= 0) {
                                         //get the topic
-                                        Reply selectedReply = ownReplies.indexGet(stoi(Option));
+                                        Reply selectedReply = ownReplies.get(stoi(Option));
                                         //ask for new message
                                         cout << "new message: ";
                                         string message;
                                         getline(cin, message);
                                         //find the selectedTopic in topicList;
-                                        replyList.stringGet(selectedReply.message, message);
+                                        replyList.EditName(selectedReply.message, message);
                                         replyList.saveReplies();
                                     }
                                     else {
@@ -274,7 +274,7 @@ int main()
                                     //}
                                     //else if (stoi(Option) >= 0) {
                                     //    //get the topic
-                                    //    Topic selectedTopic = ownTopics.indexGet(stoi(Option));
+                                    //    Topic selectedTopic = ownTopics.get(stoi(Option));
                                     //    topicList.remove(selectedTopic.message);
                                     //    postList.remove(selectedTopic.message);
                                     //    replyList.remove(selectedTopic.message);
@@ -296,7 +296,7 @@ int main()
                                     }
                                     else if (stoi(Option) >= 0) {
                                         //get the topic
-                                        Post selectedPost = ownPosts.indexGet(stoi(Option));
+                                        Post selectedPost = ownPosts.get(stoi(Option));
                                         //find the selectedTopic in topicList;
                                         postList.remove(selectedPost.message);
                                         replyList.remove(selectedPost.message);
@@ -316,7 +316,7 @@ int main()
                                     }
                                     else if (stoi(Option) >= 0) {
                                         //get the topic
-                                        Reply selectedReply = ownReplies.indexGet(stoi(Option));
+                                        Reply selectedReply = ownReplies.get(stoi(Option));
                                         //find the selectedTopic in topicList;
                                         int index = replyList.getIndex(selectedReply.message);
                                         replyList.remove(index);
@@ -349,7 +349,7 @@ int main()
                             else if (stoi(Option) >= 0) {
                                 //view all posts of the topic
                                 //get topic
-                                Topic topicName = topicList.indexGet(stoi(Option));
+                                Topic topicName = topicList.get(stoi(Option));
                                 while (true) {
                                     //print chosen topic
                                     cout << topicName.message << endl << endl;
@@ -378,7 +378,7 @@ int main()
                                     else if (stoi(Option) >= 0) {
                                     
                                         // view replies
-                                        Post postName = topicPosts.indexGet(stoi(Option));
+                                        Post postName = topicPosts.get(stoi(Option));
                                         cout << postName.message << endl << endl;
                                         replyList.getPrint(postName.message);
                                         cout << "'reply' to reply (negative number to go back): ";
@@ -478,7 +478,7 @@ int main()
                                 cout << "invalid post number, please try again." << endl;
                             }
                             else if (stoi(Option) >= 0) {
-                                Post postName = topicPosts.indexGet(stoi(Option));
+                                Post postName = topicPosts.get(stoi(Option));
                                 cout << postName.message << endl << endl;
                                 replyList.getPrint(postName.message);
                                 cout << "enter anything to go back: ";
@@ -502,7 +502,7 @@ int main()
                 else if (stoi(Option) >= 0) {
                     //view all posts of the topic
                     //get topic
-                    Topic topicName = topicList.indexGet(stoi(Option));
+                    Topic topicName = topicList.get(stoi(Option));
                     while (true) {
                         //print chosen topic
                         cout << topicName.message << endl << endl;
@@ -516,7 +516,7 @@ int main()
                             cout << "invalid post number, please try again." << endl;
                         }
                         else if (stoi(Option) >= 0) {
-                            Post postName = topicPosts.indexGet(stoi(Option));
+                            Post postName = topicPosts.get(stoi(Option));
                             cout << postName.message << endl << endl;
                             replyList.getPrint(postName.message);
                             cout << "enter anything to go back: ";

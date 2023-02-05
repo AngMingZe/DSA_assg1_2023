@@ -43,12 +43,12 @@ public:
 	//parameter:index number 
 	//return: Returns Topic object 
 	//Finds a Topic object given the input(the index) and returns it
-	TopicItem indexGet(int index);
+	TopicItem get(int index);
 
 	//parameter:Current topic name and new topic name
 	//return: NIL
 	//Changes topic name (Editing topic name)
-	void stringGet(string currentTopicName, string newTopicName);
+	void EditName(string currentTopicName, string newTopicName);
 
 	//parameter:string input
 	//return: NIL

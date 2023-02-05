@@ -65,7 +65,7 @@ void PostList::remove(string message) {
 	size--;
 }
 
-PostItem PostList::indexGet(int index)
+PostItem PostList::get(int index)
 {
 	if (index >= 0 && index <= size)
 	{
@@ -81,7 +81,7 @@ PostItem PostList::indexGet(int index)
 }
 
 //change name of messsage in post.txt
-void PostList::stringGet(string message, string newMessage)
+void PostList::EditName(string message, string newMessage)
 {
 	Node* temp = firstNode;
 	while (temp != NULL)
@@ -186,7 +186,7 @@ void PostList::savePosts()
 	ofstream postFile("Post.txt");
 	for (int i = 0; i < size; i++)
 	{
-		Post postData = indexGet(i);
+		Post postData = get(i);
 		if (postData.message != "")
 		{
 			postFile << postData.creator << ":" << postData.topicName << ":" << postData.message << endl;
