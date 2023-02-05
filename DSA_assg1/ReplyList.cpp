@@ -72,7 +72,8 @@ void ReplyList::remove(int index)
 	}
 }
 
-void ReplyList::remove(string postName) {
+void ReplyList::remove(string input) {
+	/*
 	Node* prev = firstNode;
 	while (prev->item.postName == postName) {
 		firstNode = firstNode->next;
@@ -93,7 +94,28 @@ void ReplyList::remove(string postName) {
 			prev = prev->next;
 		}
 	}
-	size--;
+	*/
+
+	Node* temp = firstNode;
+	Node* infront = firstNode->next;
+	if (firstNode->item.postName == input) {
+		Node* toBeDeleted = firstNode;
+		firstNode = firstNode->next;
+		delete toBeDeleted;
+	}
+	while (temp != NULL && infront != NULL) {
+		if (infront->item.postName == input) {
+			Node* toBeDeleted = infront;
+			temp->next = infront->next;
+			delete toBeDeleted;
+			infront = temp->next;
+			size--;
+		}
+		else {
+			temp = temp->next;
+			infront = temp->next;
+		}
+	}
 }
 
 int ReplyList::getIndex(string message)
