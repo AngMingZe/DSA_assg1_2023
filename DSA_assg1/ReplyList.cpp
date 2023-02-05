@@ -83,14 +83,15 @@ void ReplyList::remove(int index)
 {
 	if (index >= 0 && index < size)
 	{
+		Node* temp = firstNode;
 		int indexCount = 0;
 		if (index == 0)
 		{
 			firstNode = firstNode->next;
+			delete temp;
 		}
 		else
 		{
-			Node* temp = firstNode;
 			while (indexCount != index - 1)
 			{
 				temp = temp->next;
@@ -107,19 +108,43 @@ void ReplyList::remove(int index)
 	}
 }
 
+void ReplyList::remove(string postName) {
+	Node* prev = firstNode;
+	while (prev->item.postName == postName) {
+		firstNode = firstNode->next;
+		delete prev;
+		Node* prev = firstNode;
+
+	}
+	Node* temp = prev->next;
+	while (temp != NULL)
+	{
+		if (temp->item.postName == postName) {
+			prev->next = temp->next;
+			delete temp;
+			Node* temp = prev->next;
+		}
+		else {
+			temp = temp->next;
+			prev = prev->next;
+		}
+	}
+	size--;
+}
+
 int ReplyList::getIndex(string message)
 {
 	Node* temp = firstNode;
-	int index = -1;
+	int index = 0;
 	while (temp != NULL)
 	{
 		if (temp->item.message == message) {
-
+			return index;
+			break;
 		}
 		temp = temp->next;
 		index++;
 	}
-	return index;
 }
 
 ReplyItem ReplyList::indexGet(int index)
@@ -137,22 +162,35 @@ ReplyItem ReplyList::indexGet(int index)
 	}
 }
 
-ReplyItem ReplyList::stringGet(string message)
+//change name of messsage in post.txt
+void ReplyList::stringGet(string message, string newMessage)
 {
 	Node* temp = firstNode;
-	Reply tempItem;
-	while (true)
+	while (temp != NULL)
 	{
-		while (temp != NULL)
-		{
-			if (temp->item.message == message) {
-				Reply tempItem = temp->item;
-			}
-			temp = temp->next;
+		if (temp->item.message == message) {
+			temp->item.message = newMessage;
+			break;
 		}
-		break;
+		temp = temp->next;
 	}
-	return tempItem;
+}
+
+//change name of topic in post.txt
+void ReplyList::postEdited(string postName, string newPostName)
+{
+	Node* temp = firstNode;
+	while (temp != NULL)
+	{
+		if (temp->item.postName == postName) {
+			temp->item.postName = newPostName;
+		}
+		temp = temp->next;
+	}
+	// parsh in selectedTopic.message
+	// create temp go through all nodes
+	// if topicName == selectedTopic.message
+	// change post
 }
 
 void ReplyList::getPrint(string postName) {

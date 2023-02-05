@@ -46,7 +46,7 @@ public:
 	//       size of list is decreased by 1
 	void remove(int index);
 
-	int getIndex(string message);
+	void remove(string message);
 
 	// get an item at a specified position of the list (retrieve)
 	// pre : 0 <= index < size
@@ -54,9 +54,10 @@ public:
 	// return the item in the specified index of the list
 	TopicItem indexGet(int index);
 
-	TopicItem stringGet(string message);
+	void stringGet(string message, string newMessage);
 
 	TopicList ownTopics(string username);
+
 
 	// check if the list is empty
 	// pre : none

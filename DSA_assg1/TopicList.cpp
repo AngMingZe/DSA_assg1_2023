@@ -79,18 +79,20 @@ bool TopicList::add(int index, TopicItem item) //firstnode is index 0
 	}
 }
 
+//remove using a indexx
 void TopicList::remove(int index)
 {
 	if (index >= 0 && index < size)
 	{
+		Node* temp = firstNode;
 		int indexCount = 0;
 		if (index == 0)
 		{
 			firstNode = firstNode->next;
+			delete temp;
 		}
 		else
 		{
-			Node* temp = firstNode;
 			while (indexCount != index - 1)
 			{
 				temp = temp->next;
@@ -107,21 +109,29 @@ void TopicList::remove(int index)
 	}
 }
 
-int TopicList::getIndex(string message)
-{
-	Node* temp = firstNode;
-	int index = -1;
-	while (temp != NULL)
+//remove using a string
+void TopicList::remove(string message) {
+	Node* prev = firstNode;
+	if (prev->item.message == message)
 	{
-		if (temp->item.message == message) {
-			
-		}
-		temp = temp->next;
-		index++;
+		firstNode = firstNode->next;
+		delete prev;
 	}
-	return index;
+	else
+	{
+		Node* temp = firstNode->next;
+		while (temp->item.message != message)
+		{
+			temp = temp->next;
+			prev = prev->next;
+		}
+		prev->next = temp->next;
+		delete temp;
+	}
+	size--;
 }
 
+//change to get
 TopicItem TopicList::indexGet(int index)
 {
 	if (index >= 0 && index <= size)
@@ -137,22 +147,18 @@ TopicItem TopicList::indexGet(int index)
 	}
 }
 
-TopicItem TopicList::stringGet(string message)
+//changes the topic message in topic.txt
+void TopicList::stringGet(string message, string newMessage)
 {
 	Node* temp = firstNode;
-	Topic tempItem;
-	while (true)
+	while (temp != NULL)
 	{
-		while (temp != NULL)
-		{
-			if (temp->item.message == message) {
-				Topic tempItem = temp->item;
-			}
-			temp = temp->next;
+		if (temp->item.message == message) {
+			temp->item.message = newMessage;
+			break;
 		}
-		break;
+		temp = temp->next;
 	}
-	return tempItem;
 }
 
 TopicList TopicList::ownTopics(string username) {

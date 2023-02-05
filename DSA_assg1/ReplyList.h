@@ -44,6 +44,8 @@ public:
 	//       size of list is decreased by 1
 	void remove(int index);
 
+	void remove(string topicName);
+
 	int getIndex(string message);
 
 	// get an item at a specified position of the list (retrieve)
@@ -52,7 +54,9 @@ public:
 	// return the item in the specified index of the list
 	ReplyItem indexGet(int index);
 
-	ReplyItem stringGet(string message);
+	void stringGet(string message, string newMessage);
+
+	void postEdited(string postName, string newPostName);
 
 	void getPrint(string postName);
 

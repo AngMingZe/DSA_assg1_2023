@@ -1,16 +1,18 @@
 //Ang Ming Ze,S10203953
 //Terrence Eng, 
 //DSA P02, Group 4
-
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <string>
+
 #include "pages.h"
 #include "List.h"
 #include "Account.h"
 #include "TopicList.h"
 #include "PostList.h"
 #include "ReplyList.h"
+
 using namespace std;
 
 void WriteReadFile() {
@@ -82,11 +84,14 @@ void createTopic(TopicList topicList, Account user) {
     topicList.saveTopics();
 }
 
-bool lettersCheck(string str) {
-    bool check = true;
+int lettersCheck(string str) {
+    bool check = false;
     while (check) {
         for (int i = 0; i <= str.length(); ++i) {
             check = isalpha(str[i]);
+            if (check == true) {
+                break;
+            }
         }
     }
     return check;
@@ -161,15 +166,20 @@ int main()
                             cout << endl;
                             cout << "Replies" << endl;
                             ReplyList ownReplies = replyList.ownReplies(user.getUsername());
-                            cout << "Edit/Delete: ";
+                            cout << "Edit/Delete/Back: ";
                             getline(cin, Option);
-                            if (Option == "Edit") {
+                            //convert input to lowercase
+                            transform(Option.begin(), Option.end(), Option.begin(),
+                                [](unsigned char c) { return tolower(c); });
+                            if (Option == "edit") {
                                 cout << "Topic/Post/Reply: ";
                                 getline(cin, Option);
-                                if (Option == "Topic") {
+                                transform(Option.begin(), Option.end(), Option.begin(),
+                                    [](unsigned char c) { return tolower(c); });
+                                if (Option == "topic") {
                                     cout << "which? ";
                                     getline(cin, Option);
-                                    if (stoi(Option) > ownTopics.getLength() - 1 || lettersCheck(Option) == false) {
+                                    if (stoi(Option) > ownTopics.getLength() - 1 || lettersCheck(Option)) {
                                         cout << "invalid topic number, please try again." << endl;
                                     }
                                     else if (stoi(Option) >= 0) {
@@ -180,18 +190,25 @@ int main()
                                         string message;
                                         getline(cin, message);
                                         //find the selectedTopic in topicList;
-                                        Topic original = topicList.stringGet(selectedTopic.message);
-                                        original.message = message;
+                                        topicList.stringGet(selectedTopic.message, message);
+                                        postList.topicEdited(selectedTopic.message, message);
+                                        //change name of topic in post.txt
+                                        // parsh in selectedTopic.message
+                                        // create temp go through all nodes
+                                        // if topicName == selectedTopic.message
+                                        // change post
+
                                         topicList.saveTopics();
+                                        postList.savePosts();
                                     }
                                     else {
                                         cout << "incorrect input";
                                     }
                                 }
-                                else if (Option == "Post") {
+                                else if (Option == "post") {
                                     cout << "which? ";
                                     getline(cin, Option);
-                                    if (stoi(Option) > ownPosts.getLength() - 1 || lettersCheck(Option) == false) {
+                                    if (stoi(Option) > ownPosts.getLength() - 1 || lettersCheck(Option)) {
                                         cout << "invalid post number, please try again." << endl;
                                     }
                                     else if (stoi(Option) >= 0) {
@@ -202,18 +219,19 @@ int main()
                                         string message;
                                         getline(cin, message);
                                         //find the selectedTopic in topicList;
-                                        Post original = postList.stringGet(selectedPost.message);
-                                        original.message = message;
+                                        postList.stringGet(selectedPost.message, message);
+                                        replyList.postEdited(selectedPost.message, message);
                                         postList.savePosts();
+                                        replyList.saveReplies();
                                     }
                                     else {
                                         cout << "incorrect input";
                                     }
                                 }
-                                else if (Option == "Reply") {
+                                else if (Option == "reply") {
                                     cout << "which? ";
                                     getline(cin, Option);
-                                    if (stoi(Option) > ownReplies.getLength() - 1 || lettersCheck(Option) == false) {
+                                    if (stoi(Option) > ownReplies.getLength() - 1 || lettersCheck(Option)) {
                                         cout << "invalid reply number, please try again." << endl;
                                     }
                                     else if (stoi(Option) >= 0) {
@@ -224,8 +242,7 @@ int main()
                                         string message;
                                         getline(cin, message);
                                         //find the selectedTopic in topicList;
-                                        Reply original = replyList.stringGet(selectedReply.message);
-                                        original.message = message;
+                                        replyList.stringGet(selectedReply.message, message);
                                         replyList.saveReplies();
                                     }
                                     else {
@@ -233,59 +250,65 @@ int main()
                                     }
                                 }
                                 else {
-
+                                    cout << "incorrect input";
                                 }
                             }
-                            else if (Option == "Delete") {
+                            else if (Option == "delete") {
                                 cout << "Topic/Post/Reply: ";
                                 getline(cin, Option);
-                                if (Option == "Topic") {
+                                transform(Option.begin(), Option.end(), Option.begin(),
+                                    [](unsigned char c) { return tolower(c); });
+                                if (Option == "topic") {
                                     cout << "which? ";
                                     getline(cin, Option);
-                                    if (stoi(Option) > ownTopics.getLength() - 1 || lettersCheck(Option) == false) {
+                                    if (stoi(Option) > ownTopics.getLength() - 1 || lettersCheck(Option)) {
                                         cout << "invalid topic number, please try again." << endl;
                                     }
                                     else if (stoi(Option) >= 0) {
                                         //get the topic
                                         Topic selectedTopic = ownTopics.indexGet(stoi(Option));
-                                        //find the selectedTopic in topicList;
-                                        int index = topicList.getIndex(selectedTopic.message);
-                                        topicList.remove(index);
+                                        topicList.remove(selectedTopic.message);
+                                        postList.remove(selectedTopic.message);
+                                        //search for postName
+                                        //if return false, remove
+                                        //horrible time complexity
                                         topicList.saveTopics();
                                     }
                                     else {
                                         cout << "incorrect input";
                                     }
                                 }
-                                else if (Option == "Post") {
+                                else if (Option == "post") {
                                     cout << "which? ";
                                     getline(cin, Option);
-                                    if (stoi(Option) > ownPosts.getLength() - 1 || lettersCheck(Option) == false) {
+                                    if (stoi(Option) > ownPosts.getLength() - 1 || lettersCheck(Option)) {
                                         cout << "invalid post number, please try again." << endl;
                                     }
                                     else if (stoi(Option) >= 0) {
                                         //get the topic
                                         Post selectedPost = ownPosts.indexGet(stoi(Option));
                                         //find the selectedTopic in topicList;
-                                        int index = postList.getIndex(selectedPost.message);
-                                        postList.remove(index);
+                                        postList.remove(selectedPost.message);
+                                        replyList.remove(selectedPost.message);
+                                        cout << "4" << endl;
                                         postList.savePosts();
+                                        replyList.saveReplies();
                                     }
                                     else {
                                         cout << "incorrect input";
                                     }
                                 }
-                                else if (Option == "Reply") {
+                                else if (Option == "reply") {
                                     cout << "which? ";
                                     getline(cin, Option);
-                                    if (stoi(Option) > ownReplies.getLength() - 1 || lettersCheck(Option) == false) {
+                                    if (stoi(Option) > ownReplies.getLength() - 1 || lettersCheck(Option)) {
                                         cout << "invalid reply number, please try again." << endl;
                                     }
                                     else if (stoi(Option) >= 0) {
                                         //get the topic
-                                        Reply selectedTopic = ownReplies.indexGet(stoi(Option));
+                                        Reply selectedReply = ownReplies.indexGet(stoi(Option));
                                         //find the selectedTopic in topicList;
-                                        int index = replyList.getIndex(selectedTopic.message);
+                                        int index = replyList.getIndex(selectedReply.message);
                                         replyList.remove(index);
                                         replyList.saveReplies();
                                     }
@@ -297,6 +320,9 @@ int main()
                                     cout << "incorrect input";
                                 }
                             }
+                            else if (Option == "back") {
+                                break;
+                            }
                             else {
                                 cout << "wrong input" << endl;
                             }
@@ -307,10 +333,10 @@ int main()
                             topicList.print();
                             cout << "Topic to view (negative number to go back): ";
                             getline(cin, Option);
-                            /*if (stoi(Option) > topicList.getLength() - 1 || lettersCheck(Option)) {
+                            if (stoi(Option) > topicList.getLength() - 1 || lettersCheck(Option)) {
                                 cout << "invalid topic number, please try again." << endl;
-                            }*/
-                            if (stoi(Option) >= 0) {
+                            }
+                            else if (stoi(Option) >= 0) {
                                 //view all posts of the topic
                                 //get topic
                                 Topic topicName = topicList.indexGet(stoi(Option));
@@ -417,7 +443,10 @@ int main()
                 topicList.print();
                 cout << "Topic to view (negative number to go back): ";
                 getline(cin, Option);
-                if (stoi(Option) > topicList.getLength() - 1 || lettersCheck(Option) == false) {
+                if (lettersCheck(Option)) {
+                    cout << "please enter a number" << endl;
+                }
+                else if (stoi(Option) > topicList.getLength() - 1) {
                     cout << "invalid topic number, please try again." << endl;
                 }
                 else if (stoi(Option) >= 0) {
@@ -433,7 +462,7 @@ int main()
                         PostList topicPosts = postList.getPrint(topicName.message);
                         cout << "View Replies (negative number to go back): ";
                         getline(cin, Option);
-                        if (stoi(Option) > topicPosts.getLength() - 1 || lettersCheck(Option) == false) {
+                        if (stoi(Option) > topicPosts.getLength() - 1 || lettersCheck(Option)) {
                             cout << "invalid post number, please try again." << endl;
                         }
                         else if (stoi(Option) >= 0) {

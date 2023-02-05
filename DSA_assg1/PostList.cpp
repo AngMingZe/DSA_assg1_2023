@@ -83,14 +83,15 @@ void PostList::remove(int index)
 {
 	if (index >= 0 && index < size)
 	{
+		Node* temp = firstNode;
 		int indexCount = 0;
 		if (index == 0)
 		{
 			firstNode = firstNode->next;
+			delete temp;
 		}
 		else
 		{
-			Node* temp = firstNode;
 			while (indexCount != index - 1)
 			{
 				temp = temp->next;
@@ -105,6 +106,27 @@ void PostList::remove(int index)
 	else {
 		cout << "No item in index" << endl;
 	}
+}
+
+void PostList::remove(string message) {
+	Node* prev = firstNode;
+	if (prev->item.message == message)
+	{
+		firstNode = firstNode->next;
+		delete prev;
+	}
+	else
+	{
+		Node* temp = firstNode->next;
+		while (temp->item.message != message)
+		{
+			temp = temp->next;
+			prev = prev->next;
+		}
+		prev->next = temp->next;
+		delete temp;
+	}
+	size--;
 }
 
 int PostList::getIndex(string message)
@@ -137,22 +159,35 @@ PostItem PostList::indexGet(int index)
 	}
 }
 
-PostItem PostList::stringGet(string message)
+//change name of messsage in post.txt
+void PostList::stringGet(string message, string newMessage)
 {
 	Node* temp = firstNode;
-	Post tempItem;
-	while (true)
+	while (temp != NULL)
 	{
-		while (temp != NULL)
-		{
-			if (temp->item.message == message) {
-				Post tempItem = temp->item;
-			}
-			temp = temp->next;
+		if (temp->item.message == message) {
+			temp->item.message = newMessage;
+			break;
 		}
-		break;
+		temp = temp->next;
 	}
-	return tempItem;
+}
+
+//change name of topic in post.txt
+void PostList::topicEdited(string topicName, string newTopicName)
+{
+	Node* temp = firstNode;
+	while (temp != NULL)
+	{
+		if (temp->item.topicName == topicName) {
+			temp->item.topicName = newTopicName;
+		}
+		temp = temp->next;
+	}
+	// parsh in selectedTopic.message
+	// create temp go through all nodes
+	// if topicName == selectedTopic.message
+	// change post
 }
 
 PostList PostList::getPrint(string topicName) {

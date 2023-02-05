@@ -2,8 +2,7 @@ terr:How to use knife:buy 1 first
 terr:How to use knife:not sure
 terr:Tips and tricks:Use water
 terr:Tips and tricks:Use a board
-terr:Red apple:Are they better than green apples
-terr:Green apple:Are they sour
-mz:Are pears better than apple?:Nope
-mz:Pear are bad for you!!!:Nope
-mz:Red apple:no
+terr:Red apple:is it good?
+terr:Red apple:is it bad?
+terr:Green apple:is it good?
+terr:Green apple:is it bad?
