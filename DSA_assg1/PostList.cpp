@@ -97,6 +97,8 @@ void PostList::remove(int index)
 				indexCount++;
 			}
 			temp->next = temp->next->next;
+			temp = temp->next;
+			delete temp;
 		}
 		size--;
 	}
@@ -105,7 +107,22 @@ void PostList::remove(int index)
 	}
 }
 
-PostItem PostList::get(int index)
+int PostList::getIndex(string message)
+{
+	Node* temp = firstNode;
+	int index = -1;
+	while (temp != NULL)
+	{
+		if (temp->item.message == message) {
+
+		}
+		temp = temp->next;
+		index++;
+	}
+	return index;
+}
+
+PostItem PostList::indexGet(int index)
 {
 	if (index >= 0 && index <= size)
 	{
@@ -120,6 +137,57 @@ PostItem PostList::get(int index)
 	}
 }
 
+PostItem PostList::stringGet(string message)
+{
+	Node* temp = firstNode;
+	Post tempItem;
+	while (true)
+	{
+		while (temp != NULL)
+		{
+			if (temp->item.message == message) {
+				Post tempItem = temp->item;
+			}
+			temp = temp->next;
+		}
+		break;
+	}
+	return tempItem;
+}
+
+PostList PostList::getPrint(string topicName) {
+	//go through all posts, if post.topicName = topic.message then print
+	PostList postList;
+	Node* temp = firstNode;
+	int index = 0;
+	while (temp != NULL)
+	{
+		if (temp->item.topicName == topicName) {
+			cout << index << "." << temp->item.message << endl;
+			index++;
+			postList.add(temp->item);
+		}
+		temp = temp->next;
+	}
+	return postList;
+}
+
+PostList PostList::ownPosts(string username) {
+
+	PostList postList;
+	Node* temp = firstNode;
+	int index = 0;
+	while (temp != NULL)
+	{
+		if (temp->item.creator == username) {
+			cout << index << "." << temp->item.message << endl;
+			index++;
+			postList.add(temp->item);
+		}
+		temp = temp->next;
+	}
+	return postList;
+}
 bool PostList::isEmpty()
 {
 	if (size > 0) {
@@ -138,11 +206,10 @@ int PostList::getLength()
 void PostList::print()
 {
 	Node* temp = firstNode;
-	cout << temp->item.message << endl;
-	while (temp->next != NULL)
+	while (temp != NULL)
 	{
-		temp = temp->next;
 		cout << temp->item.message << endl;
+		temp = temp->next;
 	}
 }
 
@@ -172,7 +239,7 @@ void PostList::savePosts()
 	ofstream postFile("Post.txt");
 	for (int i = 0; i < size; i++)
 	{
-		Post postData = get(i);
+		Post postData = indexGet(i);
 		if (postData.message != "")
 		{
 			postFile << postData.creator << ":" << postData.topicName << ":" << postData.message << endl;

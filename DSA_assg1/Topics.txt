@@ -1,3 +1,5 @@
 mz:Cooking
-mz:Apple
+terr:Apple
 terr:Pear
+mz:crack
+mz:vanguard

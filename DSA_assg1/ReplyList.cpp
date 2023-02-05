@@ -97,6 +97,8 @@ void ReplyList::remove(int index)
 				indexCount++;
 			}
 			temp->next = temp->next->next;
+			temp = temp->next;
+			delete temp;
 		}
 		size--;
 	}
@@ -105,7 +107,22 @@ void ReplyList::remove(int index)
 	}
 }
 
-ReplyItem ReplyList::get(int index)
+int ReplyList::getIndex(string message)
+{
+	Node* temp = firstNode;
+	int index = -1;
+	while (temp != NULL)
+	{
+		if (temp->item.message == message) {
+
+		}
+		temp = temp->next;
+		index++;
+	}
+	return index;
+}
+
+ReplyItem ReplyList::indexGet(int index)
 {
 	if (index >= 0 && index <= size)
 	{
@@ -118,6 +135,52 @@ ReplyItem ReplyList::get(int index)
 		}
 		return temp->item;
 	}
+}
+
+ReplyItem ReplyList::stringGet(string message)
+{
+	Node* temp = firstNode;
+	Reply tempItem;
+	while (true)
+	{
+		while (temp != NULL)
+		{
+			if (temp->item.message == message) {
+				Reply tempItem = temp->item;
+			}
+			temp = temp->next;
+		}
+		break;
+	}
+	return tempItem;
+}
+
+void ReplyList::getPrint(string postName) {
+	Node* temp = firstNode;
+	while (temp != NULL)
+	{
+		if (temp->item.postName == postName) {
+			cout << temp->item.message << endl;
+		}
+		temp = temp->next;
+	}
+}
+
+ReplyList ReplyList::ownReplies(string username) {
+
+	ReplyList replyList;
+	Node* temp = firstNode;
+	int index = 0;
+	while (temp != NULL)
+	{
+		if (temp->item.creator == username) {
+			cout << index << "." << temp->item.message << endl;
+			index++;
+			replyList.add(temp->item);
+		}
+		temp = temp->next;
+	}
+	return replyList;
 }
 
 bool ReplyList::isEmpty()
@@ -138,11 +201,10 @@ int ReplyList::getLength()
 void ReplyList::print()
 {
 	Node* temp = firstNode;
-	cout << temp->item.message << endl;
-	while (temp->next != NULL)
+	while (temp != NULL)
 	{
-		temp = temp->next;
 		cout << temp->item.message << endl;
+		temp = temp->next;
 	}
 }
 
@@ -172,7 +234,7 @@ void ReplyList::saveReplies()
 	ofstream replyFile("Reply.txt");
 	for (int i = 0; i < size; i++)
 	{
-		Reply replyData = get(i);
+		Reply replyData = indexGet(i);
 		if (replyData.message != "")
 		{
 			replyFile << replyData.creator << ":" << replyData.postName << ":" << replyData.message << endl;

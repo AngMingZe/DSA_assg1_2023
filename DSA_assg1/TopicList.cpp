@@ -97,6 +97,8 @@ void TopicList::remove(int index)
 				indexCount++;
 			}
 			temp->next = temp->next->next;
+			temp = temp->next;
+			delete temp;
 		}
 		size--;
 	}
@@ -105,7 +107,22 @@ void TopicList::remove(int index)
 	}
 }
 
-TopicItem TopicList::get(int index)
+int TopicList::getIndex(string message)
+{
+	Node* temp = firstNode;
+	int index = -1;
+	while (temp != NULL)
+	{
+		if (temp->item.message == message) {
+			
+		}
+		temp = temp->next;
+		index++;
+	}
+	return index;
+}
+
+TopicItem TopicList::indexGet(int index)
 {
 	if (index >= 0 && index <= size)
 	{
@@ -118,6 +135,40 @@ TopicItem TopicList::get(int index)
 		}
 		return temp->item;
 	}
+}
+
+TopicItem TopicList::stringGet(string message)
+{
+	Node* temp = firstNode;
+	Topic tempItem;
+	while (true)
+	{
+		while (temp != NULL)
+		{
+			if (temp->item.message == message) {
+				Topic tempItem = temp->item;
+			}
+			temp = temp->next;
+		}
+		break;
+	}
+	return tempItem;
+}
+
+TopicList TopicList::ownTopics(string username) {
+	TopicList topicList;
+	Node* temp = firstNode;
+	int index = 0;
+	while (temp != NULL)
+	{
+		if (temp->item.creator == username) {
+			cout << index << "." << temp->item.message << endl;
+			index++;
+			topicList.add(temp->item);
+		}
+		temp = temp->next;
+	}
+	return topicList;
 }
 
 bool TopicList::isEmpty()
@@ -138,34 +189,14 @@ int TopicList::getLength()
 void TopicList::print()
 {
 	Node* temp = firstNode;
-	cout << temp->item.message << endl;
-	while (temp->next != NULL)
+	int index = 0;
+	while (temp != NULL)
 	{
+		cout << index << "." << temp->item.message << endl;
+		index++;
 		temp = temp->next;
-		cout << temp->item.message << endl;
 	}
 }
-
-//void TopicList::PrintTopics(string fileName) {
-//	/*ifstream TopicFile;
-//	TopicFile.open("Topics.txt", ios::out);*/
-//	ifstream file(fileName);
-//
-//	// Check if the file was successfully opened
-//	if (!file.is_open()) {
-//		cout << "Failed to open file " << fileName << endl;
-//		return;
-//	}
-//
-//	// Read the contents of the file line by line
-//	string line;
-//	while (getline(file, line)) {
-//		cout << line << endl;
-//	}
-//
-//	// Close the file
-//	file.close();
-//}
 
 void TopicList::loadTopics() {
 	ifstream topicFile("Topics.txt");
@@ -188,11 +219,22 @@ void TopicList::saveTopics()
 	ofstream topicFile("Topics.txt");
 	for (int i = 0; i < size; i++)
 	{
-		Topic topicData = get(i);
+		Topic topicData = indexGet(i);
 		if (topicData.message != "")
 		{
 			topicFile << topicData.creator << ":" << topicData.message << endl;
 		}
+	}
+	topicFile.close();
+	return;
+}
+
+void TopicList::createTopic(Topic topic)
+{
+	ofstream topicFile("Topics.txt");
+	if (topic.message != "")
+	{
+		topicFile << topic.creator << ":" << topic.message << endl;
 	}
 	topicFile.close();
 	return;

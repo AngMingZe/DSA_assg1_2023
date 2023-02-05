@@ -44,11 +44,19 @@ public:
 	//       size of list is decreased by 1
 	void remove(int index);
 
+	int getIndex(string message);
+
 	// get an item at a specified position of the list (retrieve)
 	// pre : 0 <= index < size
 	// post: none
 	// return the item in the specified index of the list
-	ReplyItem get(int index);
+	ReplyItem indexGet(int index);
+
+	ReplyItem stringGet(string message);
+
+	void getPrint(string postName);
+
+	ReplyList ownReplies(string username);
 
 	// check if the list is empty
 	// pre : none

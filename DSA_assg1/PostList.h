@@ -45,11 +45,19 @@ public:
 	//       size of list is decreased by 1
 	void remove(int index);
 
+	int getIndex(string message);
+
 	// get an item at a specified position of the list (retrieve)
 	// pre : 0 <= index < size
 	// post: none
 	// return the item in the specified index of the list
-	PostItem get(int index);
+	PostItem indexGet(int index);
+
+	PostItem stringGet(string message);
+
+	PostList getPrint(string topicName);
+
+	PostList ownPosts(string username);
 
 	// check if the list is empty
 	// pre : none
