@@ -6,14 +6,15 @@ using namespace std;
 class Account
 {
 private:
-	string username;
-	string password;
+	string username; //Stores the username of the user
+	string password; //Storees the password of the user
 
 public:
 	Account();
 	Account(string username,string password);
 	~Account();
 
+	//Set and getters for private variables
 	void setUsername(string n);
 	string getUsername();
 	void setpassword(string p);

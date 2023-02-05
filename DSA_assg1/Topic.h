@@ -5,30 +5,7 @@ using namespace std;
 
 struct Topic
 {
-	string creator;
-	string message;
+	string creator; //Stores the person who created this topic  
+	string message; //The topic name
 };
-
-
-//#include<iostream>
-//#include<string>
-//#include "PostList.h"
-//using namespace std;
-//
-//
-//class Topic
-//{
-//private:
-//	string creator;
-//	string message;
-//
-//public:
-//	Topic();
-//	Topic(string username, string message);
-//
-//	void setUsername(string n);
-//	string getUsername();
-//	void setMessage(string p);
-//	string getMessage();
-//};
 
