@@ -1,4 +1,3 @@
-// List.h - - Specification of List ADT (implemented using Pointers)
 #pragma once
 #include<string>
 #include<iostream>
@@ -22,91 +21,57 @@ private:
 	int  size;			// number of items in the list
 
 public:
-	TopicList();			// constructor
+	TopicList(); // constructor
 
 	~TopicList();// destructor
 
-	// add an item to the back of the list (append)
-	// pre : size < MAX_SIZE
-	// post: item is added to the back of the list
-	//       size of list is increased by 1
+	//Adds a Topic item to the list
 	bool add(TopicItem item);
 
-	// add an item at a specified position in the list (insert)
-	// pre : 0 <= index <= size
-	// post: item is added to the specified position in the list
-	//       items after the position are shifted back by 1 position
-	//       size of list is increased by 1
+	// Adds a Topic item to the list at aspecified position 
 	bool add(int index, TopicItem item);
 
-	// remove an item at a specified position in the list
-	// pre : 0 <= index < size
-	// post: item is removed the specified position in the list
-	//       items after the position are shifted forward by 1 position
-	//       size of list is decreased by 1
+	// Remove an item at a specified position in the list
 	void remove(int index);
 
+	// Gets the position of the item 
 	int getIndex(string message);
 
-	// get an item at a specified position of the list (retrieve)
-	// pre : 0 <= index < size
-	// post: none
-	// return the item in the specified index of the list
+	// Retrieve a Topic object/item at a specified position of the list 
 	TopicItem indexGet(int index);
 
 	TopicItem stringGet(string message);
 
+	//If input == topic in list, return Topic object
 	TopicItem getItem(string input);
 
+	//Retrives the topic created by user(the input)
 	TopicList ownTopics(string username);
 
 	// check if the list is empty
-	// pre : none
-	// post: none
-	// return true if the list is empty; otherwise returns false
 	bool isEmpty();
 
 	// check the size of the list
-	// pre : none
-	// post: none
-	// return the number of items in the list
 	int getLength();
 
+	//Prints the contents of the list
 	void print();
-
-	//------------------- Other useful functions -----------------
 
 	// display the items in the list
 	void loadTopics();
+
 	//Load file items into list
 	void saveTopics();
 
+	// Creates a Topic object
 	void createTopic(Topic topic);
 	
+	//Reverese the list
 	void reverse();
+
+	//Print the list sorted by latest 
 	void printByLatest();
 
+	//Searches for the input in the list, if found return true
 	bool search(string input);
 };
-
-//Topic
-//struct Node
-//{
-//	ItemType item;	// item
-//	Node* next;	// point to next topic
-//};
-//
-//Post
-//struct Node
-//{
-//	ItemType item;	// item
-//	Node* topic;	// point to topic
-//
-//};
-//
-//Replies
-//struct Node
-//{
-//	ItemType item;	// item
-//	Node* post;	// point to post
-//};
