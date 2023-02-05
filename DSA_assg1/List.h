@@ -25,24 +25,38 @@ public:
 	// destructor
 	~List();
 
-	//Adds an Account class type item to the back of the list
+	//parameter:Account object
+	//return: True or false
+	//Adds an Account class type item to the back of the list, success returns true
 	bool add(Account item);
 
+	//parameter:NIL
+	//return: True or false
 	//Checks if list is empty
 	bool isEmpty();
 
+	//parameter:NIL
+	//return: length of the list
 	//Gets the length of the List
 	int getLength();
 
-	//Prints the data store in the List
+	//parameter:NIL
+	//return: NIL
+	//Prints Account objects stored in the List
 	void printAccounts();
 
-	// save data to txt file
+	//parameter:NIL
+	//return: NIL
+	//Saves the objects in the list into a text file
 	void saveTXT(Account item);
 
+	//parameter:NIL
+	//return: True or false
 	//Data validation for logging in
 	bool dataValidation(string name, string pw);
 
+	//parameter:NIL
+	//return: True or false
 	//Check if username already exist in data when user is registering
 	bool checkDuplicates(string username);
 };

@@ -213,10 +213,6 @@ void TopicList::reverse() {
 	firstNode = prev;
 }
 
-void TopicList::printByLatest() {
-	reverse();
-	print();
-}
 
 void TopicList::loadTopics() {
 	ifstream topicFile("Topics.txt");

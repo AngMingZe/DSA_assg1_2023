@@ -7,7 +7,7 @@ class Account
 {
 private:
 	string username; //Stores the username of the user
-	string password; //Storees the password of the user
+	string password; //Stores the password of the user
 
 public:
 	Account();
