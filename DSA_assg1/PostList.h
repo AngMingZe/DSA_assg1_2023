@@ -31,13 +31,6 @@ public:
 	//       size of list is increased by 1
 	bool add(PostItem item);
 
-	// add an item at a specified position in the list (insert)
-	// pre : 0 <= index <= size
-	// post: item is added to the specified position in the list
-	//       items after the position are shifted back by 1 position
-	//       size of list is increased by 1
-	bool add(int index, PostItem item);
-
 	// remove an item at a specified position in the list
 	// pre : 0 <= index < size
 	// post: item is removed the specified position in the list
@@ -45,6 +38,7 @@ public:
 	//       size of list is decreased by 1
 	void remove(int index);
 
+	//remove by string
 	void remove(string topicName);
 
 	int getIndex(string message);
@@ -86,5 +80,7 @@ public:
 
 	// void replace(int index, PostItem item);
 	// int search(PostItem item);
+
+	void pinPost(Post item);
 };
 

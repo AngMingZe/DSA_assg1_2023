@@ -32,13 +32,6 @@ public:
 	//       size of list is increased by 1
 	bool add(TopicItem item);
 
-	// add an item at a specified position in the list (insert)
-	// pre : 0 <= index <= size
-	// post: item is added to the specified position in the list
-	//       items after the position are shifted back by 1 position
-	//       size of list is increased by 1
-	bool add(int index, TopicItem item);
-
 	// remove an item at a specified position in the list
 	// pre : 0 <= index < size
 	// post: item is removed the specified position in the list
@@ -55,6 +48,8 @@ public:
 	TopicItem indexGet(int index);
 
 	void stringGet(string message, string newMessage);
+
+	TopicItem getItem(string input);
 
 	TopicList ownTopics(string username);
 
@@ -82,6 +77,10 @@ public:
 
 	void createTopic(Topic topic);
 	
+	void reverse();
+	void printByLatest();
+
+	bool search(string input);
 };
 
 //Topic

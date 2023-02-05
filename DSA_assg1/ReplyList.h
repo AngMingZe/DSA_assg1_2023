@@ -30,13 +30,6 @@ public:
 	//       size of list is increased by 1
 	bool add(ReplyItem item);
 
-	// add an item at a specified position in the list (insert)
-	// pre : 0 <= index <= size
-	// post: item is added to the specified position in the list
-	//       items after the position are shifted back by 1 position
-	//       size of list is increased by 1
-	bool add(int index, ReplyItem item);
-
 	// remove an item at a specified position in the list
 	// pre : 0 <= index < size
 	// post: item is removed the specified position in the list

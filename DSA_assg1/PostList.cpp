@@ -43,42 +43,6 @@ bool PostList::add(PostItem item)
 	return true;
 }
 
-bool PostList::add(int index, PostItem item) //firstnode is index 0
-{
-	if (index >= 0 && index < size)
-	{
-		Node* newNode = new Node;
-		newNode->item = item;
-		newNode->next = NULL;
-		if (index == 0 && size == 0)
-		{
-			firstNode = newNode;
-		}
-		else if (index == 0 && size > 0)
-		{
-			newNode->next = firstNode->next;
-			firstNode->next = newNode;
-		}
-		else
-		{
-			int indexCount = 0;
-			Node* temp = firstNode;
-			while (indexCount != index - 1)
-			{
-				temp = temp->next;
-				indexCount++;
-			}
-			newNode->next = temp->next;
-			temp->next = newNode;
-		}
-		size++;
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
 void PostList::remove(int index)
 {
 	if (index >= 0 && index < size)
@@ -223,6 +187,7 @@ PostList PostList::ownPosts(string username) {
 	}
 	return postList;
 }
+
 bool PostList::isEmpty()
 {
 	if (size > 0) {

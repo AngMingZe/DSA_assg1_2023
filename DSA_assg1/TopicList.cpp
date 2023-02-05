@@ -43,42 +43,6 @@ bool TopicList::add(TopicItem item)
 	return true;
 }
 
-bool TopicList::add(int index, TopicItem item) //firstnode is index 0
-{
-	if (index >= 0 && index < size)
-	{
-		Node* newNode = new Node;
-		newNode->item = item;
-		newNode->next = NULL;
-		if (index == 0 && size == 0)
-		{
-			firstNode = newNode;
-		}
-		else if (index == 0 && size > 0)
-		{
-			newNode->next = firstNode->next;
-			firstNode->next = newNode;
-		}
-		else
-		{
-			int indexCount = 0;
-			Node* temp = firstNode;
-			while (indexCount != index - 1)
-			{
-				temp = temp->next;
-				indexCount++;
-			}
-			newNode->next = temp->next;
-			temp->next = newNode;
-		}
-		size++;
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
 //remove using a indexx
 void TopicList::remove(int index)
 {
@@ -161,6 +125,38 @@ void TopicList::stringGet(string message, string newMessage)
 	}
 }
 
+TopicItem TopicList::getItem(string message)
+{
+	Node* temp = firstNode;
+	Topic tempItem;
+	while (temp != NULL)
+	{
+		if (temp->item.message == message) {
+			Topic tempItem = temp->item;
+			return tempItem;
+		}
+		temp = temp->next;
+	}
+	return tempItem;
+}
+
+bool TopicList::search(string input) {
+	Node* temp = firstNode;
+	Topic tempItem;
+	while (true)
+	{
+		while (temp != NULL)
+		{
+			if (temp->item.message == input) {
+				return true;
+			}
+			temp = temp->next;
+		}
+		break;
+	}
+	return false;
+}
+
 TopicList TopicList::ownTopics(string username) {
 	TopicList topicList;
 	Node* temp = firstNode;
@@ -202,6 +198,24 @@ void TopicList::print()
 		index++;
 		temp = temp->next;
 	}
+}
+
+void TopicList::reverse() {
+	Node* current = firstNode;
+	Node* prev = NULL;
+	Node* next = NULL;
+	while (current != NULL) {
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	firstNode = prev;
+}
+
+void TopicList::printByLatest() {
+	reverse();
+	print();
 }
 
 void TopicList::loadTopics() {
